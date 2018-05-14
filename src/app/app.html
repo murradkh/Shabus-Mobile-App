@@ -1,0 +1,26 @@
+<ion-menu  [content]="content" side="right">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button  ion-item *ngFor="let p of pages" (click)="openPage(p)" text-right>
+        {{p.title}}
+      </button>
+      <ion-item>
+        <ion-label text-right>מיקום</ion-label>
+        <ion-toggle item-start [(ngModel)]="isToggled" (ionChange)="whenToggle()"></ion-toggle>
+      </ion-item>  
+    </ion-list>
+
+    <button ion-button color="blue" class="logoutCmd" (click)="logout()" menuClose> התנתק </button> 
+
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content ></ion-nav>

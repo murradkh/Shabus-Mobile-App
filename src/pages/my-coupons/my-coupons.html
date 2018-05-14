@@ -1,0 +1,43 @@
+<!--
+  Generated template for the MyCouponsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <button ion-button menuToggle right>
+      <ion-icon name="menu" side="right"></ion-icon>
+    </button>
+    <ion-title>קופונים</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="coupons" padding text-center>
+
+
+
+  
+ <img ion-button item-start src="images/icon.png" class="business1" (click)="chooseBusiness('business1')" color="blank">
+ <img ion-button item-start src="images/icon.png" class="business2" (click)="chooseBusiness('business2')" color="blank">
+ <img ion-button item-start src="images/icon.png" class="business3" (click)="chooseBusiness('business3')" color="blank">
+ <img ion-button item-start src="images/icon.png" class="business4" (click)="chooseBusiness('business4')" color="blank">
+ <img ion-button item-start src="images/icon.png" class="business5" (click)="chooseBusiness('business5')" color="blank">
+ 
+  <ion-input class="inp" type="tel" placeholder="מספר כרטיס" [(ngModel)]="cardNumber" text-center margin-top></ion-input>
+  <ion-input class="inp" type="tel" placeholder="מספר סלולרי ללא מקפים: 1234567" [(ngModel)]="phoneNumber" text-center margin-top></ion-input>
+
+
+  <button ion-button large block color="dark" (click)="rideRegistration()" margin-top>רישום נסיעה</button>
+
+
+
+
+
+
+
+
+</ion-content>
