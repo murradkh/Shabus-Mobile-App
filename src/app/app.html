@@ -1,4 +1,4 @@
-<ion-menu  [content]="content" side="right">
+<ion-menu id="mymenu" [content]="content" side="right">
   <ion-header>
     <ion-toolbar color="dark">
       <ion-title>Menu</ion-title>
@@ -10,13 +10,11 @@
       <button  ion-item *ngFor="let p of pages" (click)="openPage(p)" text-right>
         {{p.title}}
       </button>
-      <ion-item>
-        <ion-label text-right>מיקום</ion-label>
-        <ion-toggle item-start [(ngModel)]="isToggled" (ionChange)="whenToggle()"></ion-toggle>
-      </ion-item>  
+
     </ion-list>
 
-    <button ion-button color="blue" class="logoutCmd" (click)="logout()" menuClose> התנתק </button> 
+    <button ion-button color="blue" class="logoutCmd" (click)="logout()" menuClose> התנתק&ensp;<ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+    </button> 
 
   </ion-content>
 

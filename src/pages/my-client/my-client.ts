@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,AlertController } from 'ionic-angular';
-import { Authunication} from '../../services/service'
-//import { MyMoovitPage } from '../my-moovit/my-moovit';//--------//
-import{ LoadingController} from 'ionic-angular';
-import{MyDriverLoginPage} from '../my-driver-login/my-driver-login'
+import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { Authunication } from '../../services/service'
+import { Geolocation } from '@ionic-native/geolocation';
+import { LoadingController } from 'ionic-angular';
+import { MyDriverLoginPage } from '../my-driver-login/my-driver-login'
+import { NgForm } from '@angular/forms';
+import { Response } from '@angular/http';
 
 @IonicPage()
 @Component({
@@ -12,17 +14,24 @@ import{MyDriverLoginPage} from '../my-driver-login/my-driver-login'
 })
 export class MyClientPage {
 
-  clientCounter: number=1;
-  phoneNumber: string="";
+  private clientCounter: number = 1;
+  // private Driver_username:string =  ;
+  private interval: any;
+  private URL_of_passengers:string = "http://127.0.0.1:4990/Users/Passenger-New-Ride";
 
   constructor(public navCtrl: NavController,
-              private auth:Authunication,
-              private Loadingcontrol:LoadingController,
-              private alert:AlertController) {
+    private auth: Authunication,
+    private Loadingcontrol: LoadingController,
+    private alert: AlertController,
+    private geolocation: Geolocation) {
 
   }
+  ngOnDestroy() {
+    clearInterval(this.interval);
+  }
   ngOnInit() {
-    setTimeout(() => {///set timeout for the case of the shift is over
+
+    setTimeout(() => {///set timeout for the case if the shift is over
       const alert = this.alert.create({
         title: "המשמרת הסתיימה",
         buttons: ['Ok']
@@ -30,37 +39,49 @@ export class MyClientPage {
       alert.present();
       this.auth.logout()
       this.navCtrl.setRoot(MyDriverLoginPage);
-    },21600000);////6 hours =  21600000 miliseconds
+      clearInterval(this.interval);
+    }, this.auth.get_Remainng_Time());
+    
+
+    this.interval = setInterval(() => {
+      this.geolocation.getCurrentPosition().then((resp) => {
+
+        // console.log(resp.coords.latitude);
+        // console.log(resp.coords.longitude);
+        
+      }).catch((error) => {
+        console.log('Error getting location', error)
+      });
+    }, 4000);
   }
 
+  addClient() {
+    if (this.clientCounter < 5)
+      this.clientCounter++;
 
-    addClient(){
-      if(this.clientCounter<5)
-        this.clientCounter++;
-      
-    }
+  }
 
-  removeClient(){
-    if(this.clientCounter>1){
+  removeClient() {
+    if (this.clientCounter > 1) {
       this.clientCounter--;
     }
   }
-  send(){
-//      const loading=this.Loadingcontrol.create({
-// content:' ...בדיקת ניתונים',
-// // duration:2500
-//     });
-//      loading.present();
-//        this.auth.getuser().getToken().then((token:string) => {
-//    this.auth.send(token).subscribe((response:any) => {
-//      loading.dismiss();
-//      console.log(response);
-//   var x=response.json();
-//      console.log(x);
 
-//        });
-//        });
-}
+  onSubmit(form:NgForm) {
+    console.log(form.value())
+         const loading=this.Loadingcontrol.create({
+    content:' ...בדיקת ניתונים',
+        });
+         loading.present();
+         this.auth.Send_Data(form, this.URL_of_passengers).subscribe((response:Response)=>{
+          let json_response = response.json();
+          console.log(json_response);
+
+         },(error)=>{
+
+         });
+  
+  }
 }
 //       let data={};
 //       for (let prop in x) {
@@ -92,9 +113,9 @@ export class MyClientPage {
 //      console.log(error);
   //  }
   //  );
-   
+
 
   //  });
 
- 
+
 

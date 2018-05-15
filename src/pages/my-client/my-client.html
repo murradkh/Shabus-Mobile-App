@@ -10,14 +10,16 @@
 </ion-header>
 
 <ion-content padding>
-
+<!-- not good, add here the form -->
   <img src="images/icon.png">
-  <ion-input type="number" placeholder="מספר טלפון" text-center [(ngModel)]="phoneNumber" margin-top></ion-input>
+  <form (ngSubmit)='onSubmit(f)' #f=ngForm>
+  <ion-input name="phone_number" type="number" placeholder="מספר טלפון" text-center [(ngModel)]="phoneNumber" margin-top required pattern="^05[0-9]{8}$" ngModel></ion-input>
   <ion-item>
     <ion-icon class="add" name="remove-circle" (click)="removeClient()" padding></ion-icon>
     <div id="clientCounterDiv">{{clientCounter}}</div>
     <ion-icon class="remove" name="add-circle" (click)="addClient()" padding></ion-icon>
   </ion-item>
 
-  <button type="button" ion-button block color="primary" large text-center margin-top (click)="send()">הירשם לנסיעה</button>
+  <button type="submit" ion-button round block color="primary" large text-center margin-top (click)="send()" [disabled]="!f.valid">הירשם לנסיעה</button>
+  </form>
 </ion-content>

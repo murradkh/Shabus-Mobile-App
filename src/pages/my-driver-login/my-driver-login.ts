@@ -4,7 +4,8 @@ import { LoadingController, ToastController } from 'ionic-angular'
 import { Authunication } from '../../services/service';
 import { Response } from '@angular/http';
 import { NgForm } from '@angular/forms';
-// import { MyClientPage } from '../my-client/my-client';
+import { MyClientPage } from '../my-client/my-client';
+import { MenuController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -12,9 +13,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: 'my-driver-login.html',
 })
 export class MyDriverLoginPage {
-  // private username:string="";
-  // private password:string="";
-  // private Driver: { username: string, password: string };
+  private url_of_Drivers:string = 'http://127.0.0.1:4990/Users/Driver-login';
   private splash = true;
 
   constructor(private alert: AlertController,
@@ -22,12 +21,14 @@ export class MyDriverLoginPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private Loadingcontrol: LoadingController,
-    private toastctrl: ToastController) {
+    private toastctrl: ToastController,
+    private menuCtrl: MenuController) {
 
   }
   ionViewDidLoad() {
-    setTimeout(() => this.splash = false, 3700);
-    // this.menuCtrl.enable(false, 'myMenu');
+    this.splash = false;
+    setTimeout(() => this.splash = false, 3000);
+    this.menuCtrl.enable(false, 'mymenu');
   }
 
   onSignin(form: NgForm) {
@@ -35,12 +36,39 @@ export class MyDriverLoginPage {
     const loading = this.Loadingcontrol.create({
       content: ' ...מתחבר'
     });
-    // loading.present();
-    this.auth.signin(form).subscribe((response: Response) => {
-      console.log(response);
+    loading.present();
+    this.auth.Send_Data(form, this.url_of_Drivers).subscribe((response: Response) => {
+
+      let json = response.json();
       loading.dismiss();
-      // this.navCtrl.setRoot(MyClientPage);
-    }, (error) => console.log(error));
+
+      if (json['Status'] == 'Accept') {
+
+        this.auth.setToken(json['Token']);
+        this.navCtrl.setRoot(MyClientPage);
+        this.menuCtrl.enable(true, 'mymenu');
+        this.auth.get_Token_Expiration_Date();
+
+      } else {
+
+        const toast = this.toastctrl.create({
+          message: "לא זיהינו אותך, נא לנסות שוב",
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+
+      }
+    }, (error) => {
+      loading.dismiss();
+      const toast = this.toastctrl.create({
+        message:"No enternet connection!",
+        duration: 3000,
+        position: 'middle'
+      });
+      toast.present();
+    });
+
 
   }
   onsignin() {
@@ -60,28 +88,5 @@ export class MyDriverLoginPage {
     // loading.dismiss();
 
     //   setTimeout( () => {
-
-    // const alert=this.alert.create({
-    // title:"המשמרת הסתיימה",
-    // buttons:['Ok']
-    // });
-    // alert.present();
-
-    //      this.auth.logout()
-    // },
-    //    21600000);
-
-    //     }).catch(error => {
-    //      loading.dismiss();
-    //   const toast=this.toastctrl.create({
-    //   message:"לא זיהינו אותך ,נא לנסות שוב",
-    //   duration:3000
-
-
-    // });
-    // toast.present();
-    //     });
-
   }
-
 }

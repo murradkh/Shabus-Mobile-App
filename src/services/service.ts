@@ -1,45 +1,83 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions,Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { NgForm } from '@angular/forms';
+import * as jwt_decode from 'jwt-decode';
 
-// import firebase from 'firebase';
 
 @Injectable()
 export class Authunication {
-    private Session: string = null;
+
+    private Token: string = null;
+    private Remaining_time_for_shift: number = 0;
 
     constructor(private http: Http) {
 
+        this.Token = localStorage.getItem('Token');
+        this.Calculate_left_time_for_shift();
+    
     }
-    isAuthinicated() {
-        if (this.Session == null)
+    setToken(token: string) {
+    
+        localStorage.setItem('Token', token);
+        this.Token = token;
+        this.Calculate_left_time_for_shift();
+
+    }
+    getToken() {
+
+        return this.Token;
+
+    }
+    get_Remainng_Time() {
+
+        return this.Remaining_time_for_shift;
+
+    }
+    Calculate_left_time_for_shift() { // In Milliseconds
+
+        const date = this.get_Token_Expiration_Date();
+        const now = new Date();
+        let shift = date.valueOf() - now.valueOf();
+        this.Remaining_time_for_shift = shift;
+
+    }
+
+    get_Token_Expiration_Date() {
+
+        let decoded;
+        try {
+            decoded = jwt_decode(this.Token);
+        }catch (e) {
+            return new Date();
+        }
+        const date = new Date(0);
+        date.setUTCSeconds(decoded['exp']);
+        return date;
+    }
+
+    is_Authinicated() {
+
+        let date = this.get_Token_Expiration_Date();
+        let now = new Date();
+        if ((date.valueOf() - now.valueOf()) <= 0)
             return false;
         return true;
+
     }
 
-    signin(Data: NgForm) {
-        // return firebase.auth().signInWithEmailAndPassword(email,password);
-            var body = Data.value;
-            var headers = new Headers();
-            headers.append('Content-Type', 'application/json');
-            let options = new RequestOptions({ headers: headers, withCredentials: true });
-            return this.http.post('http://127.0.0.1:4990/users/Driver-login',body,options);
-            // return this.http.get('https://www.google.com/');
-            
+
+    Send_Data(Data: NgForm,URL) {
+
+        var body = Data.value;
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(URL, body, options);
+
     }
     logout() {
-        // localStorage.clear();
 
-        // firebase.auth().signOut();
-    }
-    // getuser(){
-    //     return firebase.auth().currentUser;
-    // }
-    send(data: string) {
-        // const userid=this.getuser().uid;
-        //  return this.http.get("https://shapus-ecbb4.firebase.com/"+userid+"/number.json?auth="+token);
-        //    let url="https://www.apple.com/itunes/";
-        //    return this.http.get('https://staging-shabus.herokuapp.com/');
+        localStorage.clear();
 
     }
 }
