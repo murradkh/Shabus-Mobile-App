@@ -6,6 +6,7 @@ import { Response } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { MyClientPage } from '../my-client/my-client';
 import { MenuController } from 'ionic-angular';
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
@@ -13,8 +14,9 @@ import { MenuController } from 'ionic-angular';
   templateUrl: 'my-driver-login.html',
 })
 export class MyDriverLoginPage {
-  private url_of_Drivers:string = 'http://127.0.0.1:4990/Users/Driver-login';
+  private url_of_Drivers: string = 'http://127.0.0.1:4990/Users/Driver-login';
   private splash = true;
+  private subscription: Subscription;
 
   constructor(private alert: AlertController,
     private auth: Authunication,
@@ -24,6 +26,9 @@ export class MyDriverLoginPage {
     private toastctrl: ToastController,
     private menuCtrl: MenuController) {
 
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
   ionViewDidLoad() {
     this.splash = false;
@@ -37,7 +42,7 @@ export class MyDriverLoginPage {
       content: ' ...מתחבר'
     });
     loading.present();
-    this.auth.Send_Data(form, this.url_of_Drivers).subscribe((response: Response) => {
+    this.subscription = this.auth.Send_Data(form.value, this.url_of_Drivers).subscribe((response: Response) => {
 
       let json = response.json();
       loading.dismiss();
@@ -54,6 +59,8 @@ export class MyDriverLoginPage {
         const toast = this.toastctrl.create({
           message: "לא זיהינו אותך, נא לנסות שוב",
           duration: 3000,
+          showCloseButton:true,
+          closeButtonText:"בסדר",
           position: 'top'
         });
         toast.present();
@@ -61,32 +68,15 @@ export class MyDriverLoginPage {
       }
     }, (error) => {
       loading.dismiss();
-      const toast = this.toastctrl.create({
-        message:"No enternet connection!",
-        duration: 3000,
-        position: 'middle'
+      const alert = this.alert.create({
+        title: 'שגיאה',
+        subTitle: "קרתה שגיאה בהתחברות, נא לפתוח מחדש את האפלקציה ",
+        buttons: ['בסדר']
       });
-      toast.present();
+      alert.present();
     });
 
 
   }
-  onsignin() {
 
-    //      const loading=this.Loadingcontrol.create({
-    //           content:' ...מתחבר'
-    //     });
-    //      loading.present();
-    //     this.auth.send('as').subscribe((response:Response)=>{
-    // console.log(response);
-    // loading.dismiss();
-
-    //     });
-
-
-    // this.auth.signin(this.username,this.password).then(data => {
-    // loading.dismiss();
-
-    //   setTimeout( () => {
-  }
 }

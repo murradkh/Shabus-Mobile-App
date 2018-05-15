@@ -66,18 +66,25 @@ export class Authunication {
     }
 
 
-    Send_Data(Data: NgForm,URL) {
+    Send_Data(body: NgForm,URL) {
 
-        var body = Data.value;
-        var headers = new Headers();
+
+        let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({ headers: headers });
         return this.http.post(URL, body, options);
 
     }
+    getUser(){
+        let decoded;
+        try {
+            decoded = jwt_decode(this.Token);
+        }catch (e) {
+            return "";
+        }
+        return decoded['user'];
+    }
     logout() {
-
         localStorage.clear();
-
     }
 }

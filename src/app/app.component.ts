@@ -7,6 +7,8 @@ import { MyDriverLoginPage } from '../pages/my-driver-login/my-driver-login';//-
 import { MyClientPage } from '../pages/my-client/my-client';//--------//
 import { MyCouponsPage } from '../pages/my-coupons/my-coupons';//--------//
 import { MyShekelPerKmPage } from '../pages/my-shekel-per-km/my-shekel-per-km';//--------//
+import { Network } from '@ionic-native/network';
+import { ToastController } from 'ionic-angular'
 
 
 @Component({
@@ -18,7 +20,14 @@ export class MyApp {
   private pages: Array<{ title: string, component: any }>;
   public isToggled: boolean;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: Authunication, public menuCtrl: MenuController) {
+  constructor(private platform: Platform,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private auth: Authunication,
+    private menuCtrl: MenuController,
+    private network: Network,
+    private toastctrl: ToastController) {
+
     this.isToggled = false;
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -33,6 +42,17 @@ export class MyApp {
     });
   }
   ngOnInit() {
+    let toast;
+    this.network.onDisconnect().subscribe(() => {
+      toast = this.toastctrl.create({
+        message: "No enternet connection!",
+        position: 'middle'
+      });
+      toast.present();
+    });
+    this.network.onConnect().subscribe(() => {
+      toast.dismiss();
+    });
 
     if (this.auth.is_Authinicated()) {
       this.nav.setRoot(MyClientPage);
