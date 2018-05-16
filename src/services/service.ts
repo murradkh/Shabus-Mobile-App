@@ -13,14 +13,14 @@ export class Authunication {
     constructor(private http: Http) {
 
         this.Token = localStorage.getItem('Token');
-        this.Calculate_left_time_for_shift();
-    
+        this.Remaining_time_for_shift = this.Calculate_left_time_for_shift();
+
     }
     setToken(token: string) {
-    
+
         localStorage.setItem('Token', token);
         this.Token = token;
-        this.Calculate_left_time_for_shift();
+        this.Remaining_time_for_shift = this.Calculate_left_time_for_shift();
 
     }
     getToken() {
@@ -38,16 +38,16 @@ export class Authunication {
         const date = this.get_Token_Expiration_Date();
         const now = new Date();
         let shift = date.valueOf() - now.valueOf();
-        this.Remaining_time_for_shift = shift;
+        return shift;
 
     }
 
-    get_Token_Expiration_Date() {
+    get_Token_Expiration_Date() { // return the expiration date, which exist in the token. if the token is invalid(or not exist) then returns the current date(so when test the expiration it will give its expired)
 
         let decoded;
         try {
             decoded = jwt_decode(this.Token);
-        }catch (e) {
+        } catch (e) {
             return new Date();
         }
         const date = new Date(0);
@@ -55,18 +55,16 @@ export class Authunication {
         return date;
     }
 
-    is_Authinicated() {
+    is_Authinicated() { //checking the token is valid by expiration date of the token
 
-        let date = this.get_Token_Expiration_Date();
-        let now = new Date();
-        if ((date.valueOf() - now.valueOf()) <= 0)
+        if (this.Calculate_left_time_for_shift() <= 0)
             return false;
         return true;
 
     }
 
 
-    Send_Data(body: NgForm,URL) {
+    Send_Data(body: NgForm, URL) { // sending post request to server, with specified url and body
 
 
         let headers = new Headers();
@@ -75,11 +73,11 @@ export class Authunication {
         return this.http.post(URL, body, options);
 
     }
-    getUser(){
+    getUser() { // returning the user email which exists in the token
         let decoded;
         try {
             decoded = jwt_decode(this.Token);
-        }catch (e) {
+        } catch (e) {
             return "";
         }
         return decoded['user'];

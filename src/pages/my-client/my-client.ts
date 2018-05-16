@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
   selector: 'page-my-client',
   templateUrl: 'my-client.html'
 })
+
 export class MyClientPage {
 
   private Num_Of_Passengers: number = 1;
@@ -46,51 +47,56 @@ export class MyClientPage {
       clearInterval(this.interval);
     }, this.auth.get_Remainng_Time());
 
+    // this.interval = setInterval(() => {
+    //   this.geolocation.getCurrentPosition().then((resp) => {
 
-    this.interval = setInterval(() => {
-      this.geolocation.getCurrentPosition().then((resp) => {
+    //     // console.log(resp.coords.latitude);
+    //     // console.log(resp.coords.longitude);
 
-        // console.log(resp.coords.latitude);
-        // console.log(resp.coords.longitude);
+    //   }).catch((error) => {
+    //     console.log('Error getting location', error)
+    //   });
+    // }, 4000);
 
-      }).catch((error) => {
-        console.log('Error getting location', error)
-      });
-    }, 4000);
     this.Driver_username = this.auth.getUser();
-    console.log(this.Driver_username);
   }
 
   addClient() {
+
     if (this.Num_Of_Passengers < 5)
       this.Num_Of_Passengers++;
 
   }
 
   removeClient() {
-    if (this.Num_Of_Passengers > 1) {
+
+    if (this.Num_Of_Passengers > 1) 
       this.Num_Of_Passengers--;
-    }
+
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) { //this activing when the user press on button submit
+
     let ride = form.value;
     ride['Token'] = this.auth.getToken();
     ride['Num_Of_Passengers'] = this.Num_Of_Passengers
-    console.log(ride);
+
     const loading = this.Loadingcontrol.create({
       content: ' ...בדיקת ניתונים',
     });
     loading.present();
     this.subscription = this.auth.Send_Data(ride, this.URL_of_passengers).subscribe((response: Response) => {
+     
       loading.dismiss();
       let json_response = response.json();
       console.log(json_response);
 
     }, (error) => {
-      loading.dismiss();
-    });
 
+      loading.dismiss();
+//////////////////////////////////////dont forget to add here
+
+    });
   }
 }
 
@@ -102,23 +108,4 @@ export class MyClientPage {
 // alert.present();
 // break;
 // }
-
-
-//       }
-//       if(check==false){
-// }
-
-
-
-//    },
-//    error => {
-//      loading.dismiss();
-//      console.log(error);
-  //  }
-  //  );
-
-
-  //  });
-
-
 

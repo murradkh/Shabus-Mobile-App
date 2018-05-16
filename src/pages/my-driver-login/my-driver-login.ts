@@ -13,11 +13,13 @@ import { Subscription } from 'rxjs/Subscription';
   selector: 'page-my-driver-login',
   templateUrl: 'my-driver-login.html',
 })
+
 export class MyDriverLoginPage {
+
   private url_of_Drivers: string = 'http://127.0.0.1:4990/Users/Driver-login';
   private splash = true;
   private subscription: Subscription;
-
+  
   constructor(private alert: AlertController,
     private auth: Authunication,
     private navCtrl: NavController,
@@ -28,45 +30,51 @@ export class MyDriverLoginPage {
 
   }
   ngOnDestroy() {
+
     this.subscription.unsubscribe();
+  
   }
   ionViewDidLoad() {
+
     this.splash = false;
     setTimeout(() => this.splash = false, 3000);
     this.menuCtrl.enable(false, 'mymenu');
+  
   }
 
-  onSignin(form: NgForm) {
+  onSignin(form: NgForm) { // when the user click on signin button, this function will activate
 
     const loading = this.Loadingcontrol.create({
       content: ' ...מתחבר'
     });
     loading.present();
-    this.subscription = this.auth.Send_Data(form.value, this.url_of_Drivers).subscribe((response: Response) => {
+
+    this.subscription = this.auth.Send_Data(form.value, this.url_of_Drivers).subscribe((response: Response) => { //send the authenication details to the server
 
       let json = response.json();
       loading.dismiss();
-
-      if (json['Status'] == 'Accept') {
+      
+      if (json['Status'] == 'Accept') {// in case we received from the serve thats the authnication data is valid(sending the token attached with the response)
 
         this.auth.setToken(json['Token']);
         this.navCtrl.setRoot(MyClientPage);
         this.menuCtrl.enable(true, 'mymenu');
         this.auth.get_Token_Expiration_Date();
 
-      } else {
+      } else { // in case the detail of the user is not valid 
 
         const toast = this.toastctrl.create({
           message: "לא זיהינו אותך, נא לנסות שוב",
           duration: 3000,
-          showCloseButton:true,
-          closeButtonText:"בסדר",
+          showCloseButton: true,
+          closeButtonText: "בסדר",
           position: 'top'
         });
         toast.present();
-
       }
-    }, (error) => {
+
+    }, (error) => { //is case we could not connect to the server.  
+
       loading.dismiss();
       const alert = this.alert.create({
         title: 'שגיאה',
@@ -75,7 +83,6 @@ export class MyDriverLoginPage {
       });
       alert.present();
     });
-
 
   }
 

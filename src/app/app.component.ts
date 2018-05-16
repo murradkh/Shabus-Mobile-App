@@ -14,11 +14,10 @@ import { ToastController } from 'ionic-angular'
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
   private pages: Array<{ title: string, component: any }>;
-  public isToggled: boolean;
 
   constructor(private platform: Platform,
     private statusBar: StatusBar,
@@ -28,10 +27,7 @@ export class MyApp {
     private network: Network,
     private toastctrl: ToastController) {
 
-    this.isToggled = false;
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.pages = [
@@ -41,27 +37,26 @@ export class MyApp {
       ];
     });
   }
+
   ngOnInit() {
+
     let toast;
-    this.network.onDisconnect().subscribe(() => {
+    this.network.onDisconnect().subscribe(() => { // subscriping to the disconnection event
       toast = this.toastctrl.create({
         message: "No enternet connection!",
         position: 'middle'
       });
       toast.present();
     });
-    this.network.onConnect().subscribe(() => {
+    this.network.onConnect().subscribe(() => { // subscriping to the reconnection event(after i was disconnected)
       toast.dismiss();
     });
-
-    if (this.auth.is_Authinicated()) {
+    if (this.auth.is_Authinicated()) {  //here we checking if the user have valid token in storage(not expired)
       this.nav.setRoot(MyClientPage);
       this.menuCtrl.enable(true, 'mymenu');
-    } else {
-      this.nav.setRoot(MyDriverLoginPage);
-
-    }
+    } else this.nav.setRoot(MyDriverLoginPage);
   }
+
   openPage(page) {
 
     this.nav.setRoot(page.component);
@@ -73,6 +68,5 @@ export class MyApp {
     this.menuCtrl.enable(false, 'mymenu');
     this.auth.logout();
     this.nav.setRoot(MyDriverLoginPage);
-
   }
 }
