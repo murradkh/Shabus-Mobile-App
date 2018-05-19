@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { LoadingController, ToastController } from 'ionic-angular'
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Authunication } from '../../services/service';
 import { Response } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { MyClientPage } from '../my-client/my-client';
 import { MenuController } from 'ionic-angular';
 import { Subscription } from 'rxjs/Subscription';
+import { Alert_types } from '../../services/alert_types'
 
 @IonicPage()
 @Component({
@@ -20,13 +20,10 @@ export class MyDriverLoginPage {
   private splash = true;
   private subscription: Subscription;
 
-  constructor(private alert: AlertController,
-    private auth: Authunication,
-    private navCtrl: NavController,
-    private navParams: NavParams,
-    private Loadingcontrol: LoadingController,
-    private toastctrl: ToastController,
-    private menuCtrl: MenuController) {
+  constructor(private auth: Authunication,
+              private navCtrl: NavController,
+              private menuCtrl: MenuController,
+              private alertTypes: Alert_types) {
   }
 
   ngOnDestroy() {
@@ -41,14 +38,11 @@ export class MyDriverLoginPage {
   }
 
   onSignin(form: NgForm) { // when the user click on signin button, this function will activate
-    const loading = this.Loadingcontrol.create({
-      content: ' ...מתחבר'
-    });
+    let loading = this.alertTypes.get_loading_alert();
     loading.present();
     let body = form.value;
     this.auth.getlocation().then((resp) => { // in case the GBS feature is active and we can use it
       body['coordination'] = { "latitude": resp.coords.latitude, "longitude": resp.coords.longitude };
-
       this.subscription = this.auth.Send_Data(body, this.url_of_Drivers).subscribe((response: Response) => { //send the authenication details to the server
         let json = response.json();
         loading.dismiss();
@@ -58,41 +52,19 @@ export class MyDriverLoginPage {
           this.menuCtrl.enable(true, 'mymenu');
           this.auth.get_Token_Expiration_Date();
 
-        } else { // in case the detail of the user is not valid 
-          const toast = this.toastctrl.create({
-            message: "לא זיהינו אותך, נא לנסות שוב",
-            showCloseButton: true,
-            closeButtonText: "בסדר",
-            position: 'top'
-          });
-          toast.present();}
+        } else // in case the detail of the user is not valid 
+          this.alertTypes.get_driver_not_exist_alert().present();
+
 
       }, (error) => { //is case we could not connect to the server.  
         loading.dismiss();
-        const alert = this.alert.create({
-          title: 'שגיאה',
-          subTitle: "קרתה שגיאה בהתחברות, נא לפתוח מחדש את האפלקציה ",
-          buttons: ['בסדר']
-        });
-        alert.present(); 
+        this.alertTypes.get_failed_to_connect_to_server_alert().present();
       });
-      
     }).catch((error) => {  //in case the GBS feature is not active and we can't use it.
-      const alert = this.alert.create({
-        title: 'שגיאה',
-        subTitle: "(GBS).נא לאפשר תכונת המיקום בהגדרות",
-        buttons: ['בסדר']
-      });
-      alert.present();
       loading.dismiss();
+      this.alertTypes.get_gbs_alert().present();
       return;
     });
-
-    //   body['coordination'] = this.auth.getlocation();
-    //   if (body['coordination'] == undefined){
-    //     loading.dismiss();
-    //     return;
-    // }
 
   }
 

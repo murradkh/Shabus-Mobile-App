@@ -14,7 +14,7 @@ import { Network } from '@ionic-native/network';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Errors_types } from '../services/errors';
+import { Alert_types } from '../services/alert_types';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { Errors_types } from '../services/errors';
     SplashScreen,
     Authunication,
     SMS,
-    Errors_types,
+    Alert_types,
     Network,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
