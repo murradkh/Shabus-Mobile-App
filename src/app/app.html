@@ -7,13 +7,13 @@
 
   <ion-content>
     <ion-list>
-      <button  ion-item *ngFor="let p of pages" (click)="openPage(p)" text-right>
+      <button  ion-item *ngFor="let p of pages" (click)="openPage(p)" text-right menuClose>
         {{p.title}}
       </button>
 
     </ion-list>
 
-    <button ion-button color="blue" class="logoutCmd" (click)="logout()" menuClose> התנתק&ensp;<ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+    <button ion-button color="blue" class="logoutCmd" (click)="logout()" round menuClose> התנתק&ensp;<ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
     </button> 
 
   </ion-content>

@@ -60,13 +60,12 @@ export class MyApp {
   openPage(page) {
 
     this.nav.setRoot(page.component);
-    this.menuCtrl.close();
+    // this.menuCtrl.close();
   }
 
   logout() {
-
-    this.menuCtrl.enable(false, 'mymenu');
     this.auth.logout();
+    this.menuCtrl.enable(false, 'mymenu');
     this.nav.setRoot(MyDriverLoginPage);
   }
 }
