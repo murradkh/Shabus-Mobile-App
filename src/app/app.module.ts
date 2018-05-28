@@ -2,11 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
-import { SMS } from '@ionic-native/sms';
 import { MyApp } from './app.component';
-import { Authunication } from '../services/service';
-import { MyDriverLoginPage } from '../pages/my-driver-login/my-driver-login';//--------//
-import { MyClientPage } from '../pages/my-client/my-client';//--------//
+import { Service } from '../services/service';
+import { MyDriverLoginPage } from '../pages/User/my-driver-login/my-driver-login';//--------//
+import { MyClientPage } from '../pages/User/my-client/my-client';//--------//
 import { MyMoovitPage } from '../pages/my-moovit/my-moovit';//--------//
 import { MyCouponsPage } from '../pages/my-coupons/my-coupons';//--------//
 import { MyShekelPerKmPage } from '../pages/my-shekel-per-km/my-shekel-per-km';//--------//
@@ -14,7 +13,9 @@ import { Network } from '@ionic-native/network';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Alert_types } from '../services/alert_types';
+import { Alert_types } from '../services/alert_types.service';
+import { MyPopOver } from '../pages/User/my-client/mypopover/popover';
+import { SMS } from '@ionic-native/sms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { Alert_types } from '../services/alert_types';
     MyClientPage,
     MyMoovitPage,
     MyCouponsPage,
-    MyShekelPerKmPage
+    MyShekelPerKmPage,
+    MyPopOver
   ],
   imports: [
     BrowserModule,
@@ -37,17 +39,18 @@ import { Alert_types } from '../services/alert_types';
     MyClientPage,
     MyMoovitPage,
     MyCouponsPage,
-    MyShekelPerKmPage
+    MyShekelPerKmPage,
+    MyPopOver
 
   ],
   providers: [
     Geolocation,
     StatusBar,
     SplashScreen,
-    Authunication,
-    SMS,
+    Service,
     Alert_types,
     Network,
+    SMS,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

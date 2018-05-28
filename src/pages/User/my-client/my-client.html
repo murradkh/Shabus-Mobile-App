@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="primary" text-center>
+    <ion-buttons end>
+      <button icon-only menuToggle ion-button>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="openpopover($event)">
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>זיהוי נוסע</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding  #contentEle>
+  <img src="images/icon.png">
+  <form (ngSubmit)='onSubmit(f)' #f=ngForm>
+    <ion-input name="Phone_Number" type="number" placeholder="מספר טלפון" text-center [(ngModel)]="phoneNumber" margin-top required
+      pattern="^05[0-9]{8}$" ngModel></ion-input>
+      <ion-grid>
+        <ion-row >
+          <ion-col  col-xl-5 col-lg-5 col-md-4 col-3>
+          </ion-col>
+          <ion-col>
+      <ion-icon class="add" name="remove-circle" (click)="removeClient()"  ></ion-icon>
+            <span id="clientCounterDiv">{{Num_Of_Passengers}}</span>
+      <ion-icon class="remove" name="add-circle" (click)="addClient()" ></ion-icon>            
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+    <button type="submit" ion-button round block color="primary" large text-center margin-top [disabled]="!f.valid">הירשם לנסיעה</button>
+  </form>
+</ion-content>

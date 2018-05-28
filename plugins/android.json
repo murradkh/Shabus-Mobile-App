@@ -33,6 +33,9 @@
         },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-networkinterface": {
+            "PACKAGE_NAME": "io.ionic.starter"
         }
     },
     "dependent_plugins": {

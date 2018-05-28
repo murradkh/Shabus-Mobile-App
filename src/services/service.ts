@@ -2,21 +2,23 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import * as jwt_decode from 'jwt-decode';
 import { Geolocation } from '@ionic-native/geolocation';
-import { AlertController, MenuController } from 'ionic-angular';
+import { Subject } from 'rxjs/Subject';
+import { SMS } from '@ionic-native/sms';
 
 
 @Injectable()
-export class Authunication {
-
+export class Service {
+    readonly logOut_Event: Subject<void> = new Subject<void>();
     private Token: string = null;
     private Remaining_time_for_shift: number = 0;
 
     constructor(private http: Http,
         private geolocation: Geolocation,
-        private alert: AlertController,
-        private menuctrl:MenuController) {
+        private sms: SMS) {
+
         this.Token = localStorage.getItem('Token');
         this.Remaining_time_for_shift = this.Calculate_left_time_for_shift();
+
 
     }
 
@@ -27,7 +29,7 @@ export class Authunication {
     }
 
     getlocation() {
-       return this.geolocation.getCurrentPosition();
+        return this.geolocation.getCurrentPosition();
     }
 
     getToken() {
@@ -80,7 +82,10 @@ export class Authunication {
         return decoded['user'];
     }
 
-    logout() {
+    clearStorage() {
         localStorage.clear();
+    }
+    send_sms(phone_number, body) {
+        return this.sms.send(phone_number, body);
     }
 }

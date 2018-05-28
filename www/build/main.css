@@ -29756,33 +29756,53 @@ ion-navbar.toolbar {
 
 page-my-client #clientCounterDiv {
   font-size: 100px;
-  padding-left: 16px;
-  padding-right: 16px;
-  float: left;
 }
 
 page-my-client .add, page-my-client .remove {
   font-size: 70px;
   color: seagreen;
-  float: left;
 }
 
-page-my-client .add {
-  margin-left: 7%;
+popover-page .row-dots {
+  text-align: center;
 }
 
-.business1, .business2, .business3, .business4, .business5 {
-  width: 100px;
-  height: 100px;
-  border-radius: 5px;
+popover-page .row-dots .dot {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  border-radius: 50%;
 }
 
-.coupons {
-  background-color: lightgrey;
-}
-
-.inp {
+popover-page .dot-white {
   background-color: white;
+}
+
+popover-page .dot-blue {
+  background-color: #00536d;
+}
+
+popover-page .dot-grey {
+  background-color: #4c4b50;
+}
+
+popover-page .dot-red {
+  background-color: #8f3939;
+}
+
+popover-page .selected {
+  border: 3px solid #327eff;
+}
+
+popover-page img {
+  border-radius: 50%;
+  margin-left: 20%;
+  border: 3px solid #11161f;
+}
+
+popover-page .pp {
+  font-size: 17px;
+  margin-left: 1%;
 }
 
 page-my-driver-login {
@@ -30015,6 +30035,20 @@ ion-input {
     -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
   }
+}
+
+.business1, .business2, .business3, .business4, .business5 {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.coupons {
+  background-color: lightgrey;
+}
+
+.inp {
+  background-color: white;
 }
 
 .message {
