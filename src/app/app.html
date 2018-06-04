@@ -1,24 +1,33 @@
+
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+    <div class="flb">
+      <div class="Aligner-item Aligner-item--top"></div>
+      <img src="images/icon.png">
+      <div class="Aligner-item Aligner-item--bottom"></div>
+    </div>
+  </div>
+  
+
+
 <ion-menu id="mymenu" [content]="content" side="right">
   <ion-header>
     <ion-toolbar color="primary">
       <ion-title>רשימה</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content>
     <ion-list>
+
       <button  ion-item *ngFor="let p of pages" (click)="openPage(p)" text-right menuClose>
-        {{p.title}}
+        {{p.title}} <img [src]="p.icon" width="50" height="50" item-right>
       </button>
-
     </ion-list>
-
-    <!-- <button ion-button color="blue" class="logoutCmd" (click)="logout()" round menuClose> התנתק&ensp;<ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
-    </button>  -->
-
   </ion-content>
-
-</ion-menu>
-
+</ion-menu> -->
+<!-- <ion-footer>
+    <ion-toolbar>
+      <ion-title>Footer</ion-title>
+    </ion-toolbar>
+  </ion-footer> -->
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content ></ion-nav>
+<ion-nav [root]="root" #content ></ion-nav>

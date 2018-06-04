@@ -4,17 +4,17 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { Service } from '../services/service';
-import { MyDriverLoginPage } from '../pages/User/my-driver-login/my-driver-login';//--------//
-import { MyClientPage } from '../pages/User/my-client/my-client';//--------//
-import { MyMoovitPage } from '../pages/my-moovit/my-moovit';//--------//
+import { MyDriverLoginPage } from '../pages/user/driver/my-driver-login';//--------//
+import { MyClientPage } from '../pages/user/client/my-client';//--------//
+import { MyMoovitPage } from '../pages/user/moovit/my-moovit';//--------//
 import { MyCouponsPage } from '../pages/my-coupons/my-coupons';//--------//
 import { MyShekelPerKmPage } from '../pages/my-shekel-per-km/my-shekel-per-km';//--------//
-import { Network } from '@ionic-native/network';
+// import { Network } from '@ionic-native/network';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Alert_types } from '../services/alert_types.service';
-import { MyPopOver } from '../pages/User/my-client/mypopover/popover';
+import { MyPopOver } from '../pages/user/client/mypopover/popover';
 import { SMS } from '@ionic-native/sms';
 
 @NgModule({
@@ -49,7 +49,7 @@ import { SMS } from '@ionic-native/sms';
     SplashScreen,
     Service,
     Alert_types,
-    Network,
+    // Network,
     SMS,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

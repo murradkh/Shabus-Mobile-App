@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="primary" text-center>
+    <ion-title text-center>Moovit</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="message" padding text-center> 
+  <p >
+  לא זיהינו את הנוסע {{phoneNumber}}
+  <br/>
+  האם מדובר במשתמש 
+  <br/>
+  ?Moovit
+</p>
+  <button ion-button large color="dark" (click)="go_back('yes')" padding> כן </button>
+  <button ion-button large color="dark" padding (click)="go_back('no')"> לא </button>
+  <img src="images/moovit_logo.png">
+
+</ion-content>

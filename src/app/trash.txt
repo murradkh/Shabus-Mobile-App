@@ -1,3 +1,0 @@
-ionic cordova build android
-ionic cordova run android -–device
-C:\Users\admin\AppData\Local\Android\Sdk

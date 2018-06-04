@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 279:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_shekel_per_km__ = __webpack_require__(105);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyShekelPerKmPageModule", function() { return MyShekelPerKmPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_moovit__ = __webpack_require__(103);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyMoovitPageModule", function() { return MyMoovitPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,26 +18,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MyShekelPerKmPageModule = (function () {
-    function MyShekelPerKmPageModule() {
+var MyMoovitPageModule = (function () {
+    function MyMoovitPageModule() {
     }
-    return MyShekelPerKmPageModule;
+    return MyMoovitPageModule;
 }());
-MyShekelPerKmPageModule = __decorate([
+MyMoovitPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__my_shekel_per_km__["a" /* MyShekelPerKmPage */],
+            __WEBPACK_IMPORTED_MODULE_2__my_moovit__["a" /* MyMoovitPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_shekel_per_km__["a" /* MyShekelPerKmPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_moovit__["a" /* MyMoovitPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__my_shekel_per_km__["a" /* MyShekelPerKmPage */]
+            __WEBPACK_IMPORTED_MODULE_2__my_moovit__["a" /* MyMoovitPage */]
         ]
     })
-], MyShekelPerKmPageModule);
+], MyMoovitPageModule);
 
-//# sourceMappingURL=my-shekel-per-km.module.js.map
+//# sourceMappingURL=my-moovit.module.js.map
 
 /***/ })
 

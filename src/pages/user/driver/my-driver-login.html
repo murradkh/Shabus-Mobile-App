@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-center>שבוס - התחברות</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding >
+  <img src="images/icon.png">
+
+  <form (ngSubmit)='onSignin(f)' #f=ngForm>
+    <ion-list>
+      <ion-item>
+          <ion-input name="email" type="text" placeholder="אימייל"  pattern="^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$" text-center margin-top ngModel required ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-input name="password" type="password" placeholder="סיסמא" text-center margin-top ngModel required></ion-input>          
+      </ion-item>
+      <br>
+    </ion-list>
+    <button ion-button round  block  type="submit" color="primary" margin-top [disabled]="!f.valid">התחבר&ensp; <ion-icon ios="ios-log-in" md="md-log-in" class="logOut"></ion-icon></button>
+  </form>
+</ion-content>
+<ion-footer>
+  <h4 text-center  style="color: blue">
+  @Designed by murrad with ibrahim.    
+  </h4>
+</ion-footer>

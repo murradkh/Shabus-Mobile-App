@@ -4,36 +4,54 @@ import * as jwt_decode from 'jwt-decode';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Subject } from 'rxjs/Subject';
 import { SMS } from '@ionic-native/sms';
+import { Alert_types } from './alert_types.service';
+// import { MyMoovitPage } from '../pages/user/moovit/my-moovit';
+import { Response } from '@angular/http';
 
 
 @Injectable()
 export class Service {
     readonly logOut_Event: Subject<void> = new Subject<void>();
-    private Token: string = null;
+    private token: string = null;
     private Remaining_time_for_shift: number = 0;
+    private decoded_token: {} = {};
+    // private url_of_moovit_users: string = "https://shabus-mobile-api.herokuapp.com/user/moovit";
+    private url_of_moovit_users: string = "http://127.0.0.1:4990/user/moovit";
+    
 
     constructor(private http: Http,
         private geolocation: Geolocation,
-        private sms: SMS) {
+        private sms: SMS,
+        private alertservice: Alert_types) {
 
-        this.Token = localStorage.getItem('Token');
+        this.token = localStorage.getItem('token');
         this.Remaining_time_for_shift = this.Calculate_left_time_for_shift();
-
 
     }
 
-    setToken(token: string) {
-        localStorage.setItem('Token', token);
-        this.Token = token;
+    settoken(token: string) {
+        localStorage.setItem('token', token);
+        this.token = token;
         this.Remaining_time_for_shift = this.Calculate_left_time_for_shift();
+        this.set_decoded_token();
+    }
+
+    set_decoded_token() {
+        try {
+            this.decoded_token = jwt_decode(this.token);
+        } catch (e) {
+            this.decoded_token = {}
+            console.log(e)
+        }
+
     }
 
     getlocation() {
         return this.geolocation.getCurrentPosition();
     }
 
-    getToken() {
-        return this.Token;
+    get_token() {
+        return this.token;
     }
 
     get_Remainng_Time() { // return the remaining time for the shift
@@ -41,16 +59,16 @@ export class Service {
     }
 
     Calculate_left_time_for_shift() { // In Milliseconds
-        const date = this.get_Token_Expiration_Date();
+        const date = this.get_token_Expiration_Date();
         const now = new Date();
         let shift = date.valueOf() - now.valueOf();
         return shift;
     }
 
-    get_Token_Expiration_Date() { // return the expiration date, which exist in the token. if the token is invalid(or not exist) then returns the current date(so when test the expiration it will give its expired)
+    get_token_Expiration_Date() { // return the expiration date, which exist in the token. if the token is invalid(or not exist) then returns the current date(so when test the expiration it will give its expired)
         let decoded;
         try {
-            decoded = jwt_decode(this.Token);
+            decoded = jwt_decode(this.token);
         } catch (e) {
             return new Date();
         }
@@ -72,20 +90,39 @@ export class Service {
         return this.http.post(URL, body, options);
     }
 
-    getUser() { // returning the user email which exists in the token
-        let decoded;
-        try {
-            decoded = jwt_decode(this.Token);
-        } catch (e) {
-            return "";
-        }
-        return decoded['user'];
+    get_driver_name() { // returning the driver name from the decoded token
+        return this.decoded_token['name'];
+    }
+
+    get_driver_email() { // returning the driver email from the decoded token
+        return this.decoded_token['email'];
     }
 
     clearStorage() {
         localStorage.clear();
     }
+
     send_sms(phone_number, body) {
         return this.sms.send(phone_number, body);
     }
+
+    Moovit_user_checking(phoneNumber) {
+        let loading_alert = this.alertservice.get_loading_alert();
+        loading_alert.present();
+        let body = { "phone_number": phoneNumber, 'Token': this.get_token() };
+        this.Send_Data(body, this.url_of_moovit_users).subscribe((response: Response) => {
+            let response_json = response.json();
+            if (response_json['Status'] == 'Accept') {
+                // this.service.send_sms(this.phoneNumber, this.sms_body).then().catch();  
+                this.alertservice.get_new_ride_alert({ name: '' }).present();
+            } else this.alertservice.get_used_moovit_feature_before_alert().present();
+
+            loading_alert.dismiss();
+
+        }, (error) => {
+            this.alertservice.get_failed_to_connect_to_server_alert().present();
+            this.logOut_Event.next();
+        });
+    }
+
 }
