@@ -34,7 +34,7 @@
     <name>שבוס</name>
     <description>transporation in Saturday </description>
     <author email="murradkhalil@gmail.com" href="http://ionicframework.com/">Murrad And Ibrahim</author>
-    <content original-src="index.html" src="http://192.168.14.30:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -46,6 +46,10 @@
     <allow-navigation href="http://192.168.1.2:8100" />
     <allow-navigation href="http://192.168.80.1:8100" />
     <allow-navigation href="http://192.168.14.30:8100" />
+    <allow-navigation href="http://169.254.57.115:8100" />
+    <allow-navigation href="http://localhost:8100" />
+    <allow-navigation href="http://127.0.0.1:8100" />
+    <allow-navigation href="http://192.168.224.1:8100" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />

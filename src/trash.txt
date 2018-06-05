@@ -1,6 +1,6 @@
 1) ionic cordova build android
 2) ionic cordova run android -–device
-3) C:\Users\admin\AppData\Local\Android\Sdk
+3) C:\Users\myusername\AppData\Local\Android\sdk\platform-tools
 4) Path\to\adb\adb kill-server
    Path\to\adb\adb start-server
 5)  // ngOnInit() {
@@ -12,3 +12,4 @@
 
   // }
 
+6)  pattern="^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$"

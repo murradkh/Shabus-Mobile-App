@@ -12,11 +12,11 @@ import { Response } from '@angular/http';
 @Injectable()
 export class Service {
     readonly logOut_Event: Subject<void> = new Subject<void>();
+    readonly login_Event: Subject<void> = new Subject<void>();
     private token: string = null;
-    private Remaining_time_for_shift: number = 0;
     private decoded_token: {} = {};
-    // private url_of_moovit_users: string = "https://shabus-mobile-api.herokuapp.com/user/moovit";
-    private url_of_moovit_users: string = "http://127.0.0.1:4990/user/moovit";
+    private url_of_moovit_users: string = "https://shabus-mobile-api.herokuapp.com/user/moovit";
+    // private url_of_moovit_users: string = "http://127.0.0.1:4990/user/moovit";
     
 
     constructor(private http: Http,
@@ -25,15 +25,16 @@ export class Service {
         private alertservice: Alert_types) {
 
         this.token = localStorage.getItem('token');
-        this.Remaining_time_for_shift = this.Calculate_left_time_for_shift();
+        this.set_decoded_token();
 
     }
 
     settoken(token: string) {
         localStorage.setItem('token', token);
         this.token = token;
-        this.Remaining_time_for_shift = this.Calculate_left_time_for_shift();
         this.set_decoded_token();
+        this.login_Event.next();
+
     }
 
     set_decoded_token() {
@@ -41,7 +42,6 @@ export class Service {
             this.decoded_token = jwt_decode(this.token);
         } catch (e) {
             this.decoded_token = {}
-            console.log(e)
         }
 
     }
@@ -54,15 +54,22 @@ export class Service {
         return this.token;
     }
 
-    get_Remainng_Time() { // return the remaining time for the shift
-        return this.Remaining_time_for_shift;
-    }
 
-    Calculate_left_time_for_shift() { // In Milliseconds
+
+    get_left_time_for_shift_in_milliseconds() { // return the time In Milliseconds
         const date = this.get_token_Expiration_Date();
         const now = new Date();
         let shift = date.valueOf() - now.valueOf();
         return shift;
+    }
+    get_left_time_for_shift_in_time_format(){ // return the time in format H:M:S
+    let remainng_time = this.get_left_time_for_shift_in_milliseconds(); 
+    let hours = Math.floor(remainng_time / 3600 / 1000);
+    remainng_time -= (hours * 3600 * 1000);
+    let minutes = Math.floor(remainng_time / 60 / 1000);
+    remainng_time -= (minutes * 60 * 1000);
+    let seconds = Math.floor(remainng_time / 1000);
+    return {h:hours, m:minutes, s:seconds};
     }
 
     get_token_Expiration_Date() { // return the expiration date, which exist in the token. if the token is invalid(or not exist) then returns the current date(so when test the expiration it will give its expired)
@@ -78,7 +85,7 @@ export class Service {
     }
 
     is_Authinicated() { //checking the token is valid by expiration date of the token
-        if (this.Calculate_left_time_for_shift() <= 0)
+        if (this.get_left_time_for_shift_in_milliseconds() <= 0)
             return false;
         return true;
     }
@@ -100,6 +107,7 @@ export class Service {
 
     clearStorage() {
         localStorage.clear();
+        this.token = null;
     }
 
     send_sms(phone_number, body) {

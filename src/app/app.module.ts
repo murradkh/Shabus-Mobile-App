@@ -9,7 +9,9 @@ import { MyClientPage } from '../pages/user/client/my-client';//--------//
 import { MyMoovitPage } from '../pages/user/moovit/my-moovit';//--------//
 import { MyCouponsPage } from '../pages/my-coupons/my-coupons';//--------//
 import { MyShekelPerKmPage } from '../pages/my-shekel-per-km/my-shekel-per-km';//--------//
-// import { Network } from '@ionic-native/network';
+import { ForgertPasswordPage } from '../pages/user/driver/forgert-password/forgert-password'
+import { RegistrationPage } from '../pages/user/driver/registration/registration'
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -25,7 +27,9 @@ import { SMS } from '@ionic-native/sms';
     MyMoovitPage,
     MyCouponsPage,
     MyShekelPerKmPage,
-    MyPopOver
+    MyPopOver,
+    ForgertPasswordPage,
+    RegistrationPage
   ],
   imports: [
     BrowserModule,
@@ -40,8 +44,9 @@ import { SMS } from '@ionic-native/sms';
     MyMoovitPage,
     MyCouponsPage,
     MyShekelPerKmPage,
-    MyPopOver
-
+    MyPopOver,
+    ForgertPasswordPage,
+    RegistrationPage
   ],
   providers: [
     Geolocation,

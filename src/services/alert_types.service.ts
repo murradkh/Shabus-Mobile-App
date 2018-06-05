@@ -19,17 +19,17 @@ export class Alert_types {
         private sanitizer: DomSanitizer,
         ) {
 
-        this.success_logo = this.sanitizer.bypassSecurityTrustHtml('<img src="images/success.ico" width=60 height=70>');
-        this.error_logo = this.sanitizer.bypassSecurityTrustHtml('<img src="images/failed.jpg" width=60 height=70">');
-        this.Exclamation_logo = this.sanitizer.bypassSecurityTrustHtml('<img src="images/Exclamation.png" width=60 height=70>');
-        this.moovit_logo = this.sanitizer.bypassSecurityTrustHtml('<img src="images/moovit_logo1.png" width=50 height=70>');
-        this.like_logo = this.sanitizer.bypassSecurityTrustHtml('<img src="images/like.png" width=80 height=70>');
+        this.success_logo = this.sanitizer.bypassSecurityTrustHtml('<center><img src="images/success.ico" width=60 height=70 ></center>');
+        this.error_logo = this.sanitizer.bypassSecurityTrustHtml('<center><img src="images/failed.jpg" width=60 height=70"></center>');
+        this.Exclamation_logo = this.sanitizer.bypassSecurityTrustHtml('<center><img src="images/Exclamation.png" width=60 height=70></center>');
+        this.moovit_logo = this.sanitizer.bypassSecurityTrustHtml('<center><img src="images/moovit_logo1.png" width=50 height=70></center>');
+        this.like_logo = this.sanitizer.bypassSecurityTrustHtml('<center><img src="images/like.png" width=80 height=70></center>');
     }
 
     get_shift_is_over_alert() {
         let alert = this.alert.create({
             message: <any>this.Exclamation_logo,
-            title: "המשמרת הסתיימה",
+            title: "<center>המשמרת הסתיימה</center>",
             buttons: ['Ok']
         });
         return alert;
@@ -39,7 +39,7 @@ export class Alert_types {
 
         let alert = this.alert.create({
             message: <any>this.Exclamation_logo,
-            title: "(GBS).נא לאפשר תכונת המיקום בהגדרות",
+            title: "<center>.נא לאפשר תכונת המיקום בהגדורת (GBS)</center>",
             buttons: ['בסדר']
         });
         return alert;
@@ -48,7 +48,7 @@ export class Alert_types {
     get_failed_to_connect_to_server_alert() {
         let alert = this.alert.create({
             message: <any>this.error_logo,
-            title: "קרתה שגיאה בהתחברות, נא לפתוח מחדש את האפלקציה ",
+            title: "<center>קרתה שגיאה בהתחברות, נא לפתוח מחדש את האפלקציה</center> ",
             buttons: ['בסדר']
         });
         return alert;
@@ -64,10 +64,9 @@ export class Alert_types {
     get_driver_not_exist_alert() {
         let toast = this.toastctrl.create({
             message: "לא זיהינו אותך, נא לנסות שוב",
-            showCloseButton: true,
-            closeButtonText: "בסדר",
             position: 'top',
-            duration: 4000
+            duration: 4000,
+            cssClass: "toast_class"
         });
         return toast;
     }
@@ -75,7 +74,7 @@ export class Alert_types {
     get_driver_exist_alert(name) {
         let alert = this.alert.create({
             message: <any>this.success_logo,
-            title: "נסיעה בטוחה " + name,
+            title: "<center>נסיעה בטוחה " + name+"</center>",
             buttons: ['בסדר']
         });
         return alert;
@@ -83,7 +82,7 @@ export class Alert_types {
 
     get_loading_alert() {
         let loading = this.loadingctrl.create({
-            content: ' ...בדיקת ניתונים'
+            content: '<right> ...בדיקת ניתונים</right>'
         });
         return loading;
     }
@@ -91,8 +90,8 @@ export class Alert_types {
     get_new_ride_alert(json) {
         const alert = this.alert.create({
             message: <any>this.success_logo,
-            title: ("תודה לך " + json['name']),
-            subTitle: "מאחלים לך נסיעה נעימה",
+            title: "<center>תודה לך " + json['name']+"</center>",
+            subTitle: "<center>מאחלים לך נסיעה נעימה</center>",
             buttons: ['Ok']
         });
         return alert;
@@ -101,8 +100,8 @@ export class Alert_types {
     get_logout_alert(name) {
         const alert = this.alert.create({
             message: <any>this.like_logo,
-            title: ("תודה לך " + name),
-            subTitle: "יום טוב",
+            title: "<center>תודה לך " + name+"</center>",
+            subTitle: "<center>יום טוב</center>",
             buttons: ['Ok']
         });
         return alert;
@@ -111,12 +110,13 @@ export class Alert_types {
     get_prompt_alert(service:Service) {
         const alert = this.alert.create({
             title: <any>this.moovit_logo,
-            subTitle: 'Moovit משתמש ',
+            subTitle: '<center>Moovit משתמש</center> ',
             inputs: [
                 {
                     name: 'phone_number',
                     placeholder: 'מספר טלפון',
-                    type: "number"
+                    type: "number",
+                    checked:true
                 }
             ],
             enableBackdropDismiss: false,
@@ -139,8 +139,8 @@ export class Alert_types {
     get_used_moovit_feature_before_alert() {
         let alert = this.alert.create({
             message: <any>this.error_logo,
-            title: "moovit השתמשת קודם בתכונת",
-            subTitle: "נא לרשום בשבוס",
+            title: "<center>moovit השתמשת קודם בתכונת</center>",
+            subTitle: "<center>נא לרשום בשבוס</center>",
             buttons: ['בסדר']
         });
         return alert;

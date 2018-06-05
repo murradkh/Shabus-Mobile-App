@@ -33,6 +33,19 @@ ion-input.ng-invalid.ng-touched{
       border: 1px solid;
   }
 
+  .toast_class{
+text-align: right;
+
+  }
+  .menu-icons{
+    border-radius: 70%;
+    margin-left: 10%;
+    border: 3px solid #11161f;
+    background-color: white;
+  }
+p,h{
+color: white;
+}
   
 /////////////////////////////////////////////////////////thats css attributes for splash screen
 #custom-overlay {
@@ -47,7 +60,7 @@ ion-input.ng-invalid.ng-touched{
   }
   
   .flb {
-    background-color: white;
+    background-color: whitesmoke;
     height:100%;
     width:100%;
     animation: pulse 1s linear forwards;

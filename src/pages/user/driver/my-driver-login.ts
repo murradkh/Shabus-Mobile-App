@@ -16,15 +16,15 @@ import { Alert_types } from '../../../services/alert_types.service'
 
 export class MyDriverLoginPage {
 
-  // private url_of_Drivers: string = 'https://shabus-mobile-api.herokuapp.com/user/driver/login';
-  private url_of_Drivers: string = 'http://127.0.0.1:4990/user/driver/login';
-  
+  private url_of_Drivers: string = 'https://shabus-mobile-api.herokuapp.com/user/driver/login';
+  // private url_of_Drivers: string = 'http://127.0.0.1:4990/user/driver/login';
+
   private subscription: Subscription;
 
   constructor(private service: Service,
-              private navCtrl: NavController,
-              private menuCtrl: MenuController,
-              private alert_types_service: Alert_types) {
+    private navCtrl: NavController,
+    private menuCtrl: MenuController,
+    private alert_types_service: Alert_types) {
   }
 
   ngOnDestroy() {
@@ -34,8 +34,9 @@ export class MyDriverLoginPage {
   }
 
   ionViewDidLoad() {
-     this.menuCtrl.enable(false, 'mymenu');
+    this.menuCtrl.enable(false, 'mymenu');
   }
+
 
   onSignin(form: NgForm) { // when the user click on signin button, this function will activate
     let loading = this.alert_types_service.get_loading_alert();
@@ -59,12 +60,12 @@ export class MyDriverLoginPage {
         loading.dismiss();
         this.alert_types_service.get_failed_to_connect_to_server_alert().present();
       });
-    }).catch((error) => {  //in case the GBS feature is not active and we can't use it.
+    }).catch((error: PositionError) => {  //in case the GBS feature is not active and we can't use it.
       loading.dismiss();
       this.alert_types_service.get_gbs_alert().present();
       return;
     });
-
   }
+
 
 }

@@ -20,10 +20,10 @@ export class MyClientPage {
   private Num_Of_Passengers: number = 1;
   private driver_name: string = "";
   private interval: any;
-  // private new_ride_URL: string = "https://shabus-mobile-api.herokuapp.com/user/passenger/new-ride";
-  // private sending_the_coordination_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/coordination";
-  private new_ride_URL: string = "http://127.0.0.1:4990//user/passenger/new-ride";
-  private sending_the_coordination_URL: string = "http://127.0.0.1:4990/user/driver/coordination";
+  private new_ride_URL: string = "https://shabus-mobile-api.herokuapp.com/user/passenger/new-ride";
+  private sending_the_coordination_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/coordination";
+  // private new_ride_URL: string = "http://127.0.0.1:4990/user/passenger/new-ride";
+  // private sending_the_coordination_URL: string = "http://127.0.0.1:4990/user/driver/coordination";
   private subscription_1: Subscription;
   private subscription_2: Subscription;
 
@@ -49,7 +49,7 @@ export class MyClientPage {
     setTimeout(() => {///set timeout for the case if the shift is over
       this.alert_types_service.get_shift_is_over_alert().present()
       this.logout();
-    }, this.service.get_Remainng_Time());
+    }, this.service.get_left_time_for_shift_in_milliseconds());
 
     this.interval = setInterval(() => { // here we sending the coordination of the driver to server, every 3 seconds
 
@@ -96,7 +96,6 @@ export class MyClientPage {
     ride['Num_Of_Passengers'] = this.Num_Of_Passengers
     let loading = this.alert_types_service.get_loading_alert();
     loading.present();
-
     this.subscription_1 = this.service.Send_Data(ride, this.new_ride_URL).subscribe((response: Response) => {
       loading.dismiss();
       let json = response.json();
