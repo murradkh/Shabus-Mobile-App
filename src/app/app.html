@@ -15,7 +15,7 @@
   <ion-content style="background-image: url('images/background-login.jpg')">
     <ion-list>
       <button ion-item style="background-image: url('images/background-login.jpg')" *ngFor="let p of pages" (click)="openPage(p)" text-right menuClose>
-        <h2 style="color: white;">{{p.title}}</h2>
+        <h2 >{{p.title}}</h2>
         <img class="menu-icons" [src]="p.icon" width="50" height="50" item-right>
       </button>
     </ion-list>

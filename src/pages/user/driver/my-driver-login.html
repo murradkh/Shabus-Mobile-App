@@ -10,20 +10,20 @@
 <ion-content padding style="background-image: url('images/background-login.jpg')">
   <img src="images/icon.png">
   <form (ngSubmit)='onSignin(f)' #f=ngForm >
-<ion-row>
-    <ion-input autofocus name="phone_number" type="number" placeholder="מספר נייד"  pattern="^05[0-9]{8}$" text-center margin-top ngModel required ></ion-input>
+<ion-row class="rounde">
+    <ion-input autofocus  name="phone_number" type="number" placeholder="מספר נייד"  pattern="^05[0-9]{8}$" text-center margin-top ngModel="05" required ></ion-input>
   </ion-row>   
- <ion-row>
+ <ion-row class="round">
           <ion-input name="password" type="password" placeholder="סיסמא" text-center margin-top ngModel required></ion-input>          
         </ion-row> 
     <ion-row>
       <ion-col col-1>
       </ion-col>
       <ion-col col-8>
-<p (click)="openPage('forgetPassword')">שכחתי סימסה</p>
+<p (click)="openPage(pages[0].page)" >{{pages[0].title}}</p>
       </ion-col>
       <ion-col>
-<p (click)="openPage('registration')">הרשמה</p>
+<p (click)="openPage(pages[1].page)">{{pages[1].title}}</p>
       </ion-col>
     </ion-row>
     <ion-row>

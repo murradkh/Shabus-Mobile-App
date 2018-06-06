@@ -28,6 +28,7 @@
         "@angular/platform-browser-dynamic": "4.1.2",
         "@ionic-native/core": "3.10.2",
         "@ionic-native/geolocation": "^3.12.1",
+        "@ionic-native/keyboard": "^4.7.0",
         "@ionic-native/network": "^4.7.0",
         "@ionic-native/network-interface": "^4.7.0",
         "@ionic-native/sms": "^4.3.3",

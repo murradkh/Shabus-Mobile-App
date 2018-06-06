@@ -11,7 +11,7 @@ import { MyCouponsPage } from '../pages/my-coupons/my-coupons';//--------//
 import { MyShekelPerKmPage } from '../pages/my-shekel-per-km/my-shekel-per-km';//--------//
 import { ForgertPasswordPage } from '../pages/user/driver/forgert-password/forgert-password'
 import { RegistrationPage } from '../pages/user/driver/registration/registration'
-
+import { Keyboard } from '@ionic-native/keyboard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -54,7 +54,7 @@ import { SMS } from '@ionic-native/sms';
     SplashScreen,
     Service,
     Alert_types,
-    // Network,
+    Keyboard,
     SMS,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

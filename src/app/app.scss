@@ -43,10 +43,15 @@ text-align: right;
     border: 3px solid #11161f;
     background-color: white;
   }
-p,h{
+p,h2,h3,h4{
 color: white;
 }
-  
+ion-input {
+  color: white;
+  border-radius: 50px !important;
+
+}
+
 /////////////////////////////////////////////////////////thats css attributes for splash screen
 #custom-overlay {
     position: fixed;

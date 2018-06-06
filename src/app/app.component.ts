@@ -145,7 +145,7 @@ export class MyApp {
     setTimeout(() => this.timer(), 1000);
   }
   update_time_values() {
-    let f = this.service.get_left_time_for_shift_in_time_format();
+    let f = this.service.convert_to_time_format(this.service.get_left_time_for_shift_in_milliseconds());
     this.hours = f.h;
     this.minutes = f.m;
     this.seconds = f.s;

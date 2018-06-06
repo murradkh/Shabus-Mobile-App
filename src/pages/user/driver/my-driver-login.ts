@@ -6,7 +6,9 @@ import { NgForm } from '@angular/forms';
 import { MyClientPage } from '../client/my-client';
 import { MenuController } from 'ionic-angular';
 import { Subscription } from 'rxjs/Subscription';
-import { Alert_types } from '../../../services/alert_types.service'
+import { Alert_types } from '../../../services/alert_types.service';
+import { ForgertPasswordPage } from "./forgert-password/forgert-password";
+import { RegistrationPage } from './registration/registration';
 
 @IonicPage()
 @Component({
@@ -18,7 +20,7 @@ export class MyDriverLoginPage {
 
   private url_of_Drivers: string = 'https://shabus-mobile-api.herokuapp.com/user/driver/login';
   // private url_of_Drivers: string = 'http://127.0.0.1:4990/user/driver/login';
-
+  private pages: { title: string, page: any }[] = [{ title: "שכחתי סימסה", page: ForgertPasswordPage }, { title: "הרשמה", page: RegistrationPage }];
   private subscription: Subscription;
 
   constructor(private service: Service,
@@ -66,6 +68,8 @@ export class MyDriverLoginPage {
       return;
     });
   }
-
+  openPage(page) {
+    this.navCtrl.push(page);
+  }
 
 }

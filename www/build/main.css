@@ -32338,8 +32338,13 @@ ion-input {
   background-color: white;
 }
 
-p, h {
+p, h2, h3 {
   color: white;
+}
+
+ion-input {
+  color: white;
+  border-radius: 50px !important;
 }
 
 #custom-overlay {

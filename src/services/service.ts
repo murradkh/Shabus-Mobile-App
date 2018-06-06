@@ -62,13 +62,12 @@ export class Service {
         let shift = date.valueOf() - now.valueOf();
         return shift;
     }
-    get_left_time_for_shift_in_time_format(){ // return the time in format H:M:S
-    let remainng_time = this.get_left_time_for_shift_in_milliseconds(); 
-    let hours = Math.floor(remainng_time / 3600 / 1000);
-    remainng_time -= (hours * 3600 * 1000);
-    let minutes = Math.floor(remainng_time / 60 / 1000);
-    remainng_time -= (minutes * 60 * 1000);
-    let seconds = Math.floor(remainng_time / 1000);
+    convert_to_time_format(time_in_millisceconds){ // return the time in format H:M:S
+    let hours = Math.floor(time_in_millisceconds / 3600 / 1000);
+    time_in_millisceconds -= (hours * 3600 * 1000);
+    let minutes = Math.floor(time_in_millisceconds / 60 / 1000);
+    time_in_millisceconds -= (minutes * 60 * 1000);
+    let seconds = Math.floor(time_in_millisceconds / 1000);
     return {h:hours, m:minutes, s:seconds};
     }
 

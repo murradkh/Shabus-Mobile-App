@@ -16,7 +16,7 @@
 <ion-content padding #contentEle style="background-image: url('images/background-login.jpg')">
   <img src="images/icon.png">
   <form (ngSubmit)='onSubmit(f)' #f=ngForm>
-    <ion-input autofocus name="Phone_Number" type="number" placeholder="מספר טלפון" text-center [(ngModel)]="phoneNumber" margin-top required
+    <ion-input autofocus name="Phone_Number" type="number" placeholder="מספר נייד" text-center [(ngModel)]="phoneNumber" margin-top required
       pattern="^05[0-9]{8}$" ngModel></ion-input>
     <ion-grid>
       <ion-row>
@@ -30,9 +30,16 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <button type="submit" ion-button round block color="primary" large text-center margin-top [disabled]="!f.valid">
+    <button type="submit" ion-button round block color="primary"  text-center margin-top [disabled]="!f.valid">
       הירשם לנסיעה &ensp;
       <ion-icon class="send" name="send"></ion-icon>
     </button>
   </form>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+  <h4 text-center  >
+  @Designed by murrad with ibrahim.    
+  </h4>
+  </ion-toolbar>
+</ion-footer>
