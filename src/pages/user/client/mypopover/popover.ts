@@ -1,15 +1,16 @@
 import { ViewController, MenuController, Content } from "ionic-angular";
 import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
+import { Service } from "../../../../services/service";
 
 @Component({
   selector: 'popover-page',
-  template: ` <ion-list>
+  template: ` 
+  <ion-list class='item' style="background-image: url('images/background-login.jpg')">
   <ion-item-divider>
-  <img height="100" width="100" src="">
-<p class="pp">{{name}}</p>
+  <img height="100" width="130" [src]="PersonalImage">
+  <p class='pp'>{{name}}</p>
   </ion-item-divider>
-
 <ion-item>
 <ion-row class="row-dots">
         <ion-col>
@@ -26,17 +27,17 @@ import { NavParams } from 'ionic-angular';
         </ion-col>
       </ion-row>
       </ion-item>
-      <button ion-item block  (click)="Action('logout')" >
-      <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
-      &ensp;התנתק
+      <button ion-item block (click)="Action('logout')" >
+      <p item-right class='pp'>&ensp;התנתק</p>
+      <ion-icon name='log-out' item-right small></ion-icon>
        </button> 
  </ion-list>
   `
 })
 export class MyPopOver {
-  private contentEle:Content;
+  private contentEle: Content;
   private background = "";
-  private name:string;
+  private name: string;
   private colors = {
     'white': {
       'bg': 'rgb(255, 255, 255)',
@@ -55,19 +56,23 @@ export class MyPopOver {
       'fg': 'rgb(255, 255, 255)'
     },
   };
+  private PersonalImage:string;
+
   constructor(private viewctrl: ViewController,
     private navParams: NavParams,
-    private menuCtrl: MenuController) {
+    private menuCtrl: MenuController,
+    private service:Service) {
   }
 
   ngOnInit() {
     this.contentEle = this.navParams.data.contentEle;
     this.name = this.navParams.data.name;
+    this.PersonalImage = this.service.getImage();
   }
 
   changeBackground(color) {
     this.background = color;
-    this.contentEle.setElementStyle('background',this.colors[color].bg);
+    this.contentEle.setElementStyle('background', this.colors[color].bg);
   }
 
   Action(action: string) { //this activated when the user pressed one of the options(in our case there is only logout event)

@@ -28,16 +28,17 @@ popover-page {
     }
   
    .selected {
-    border: 3px solid #327eff;
+    border: 3px solid rgb(63, 63, 255);
     }
     img{
       border-radius: 50%;
       margin-left: 20%;
-      border: 3px solid #11161f;
+      border: 3px solid white;
     }
     .pp{
-      font-size: 17px;
-      margin-left: 50px;
+      font-size: 19px;
+      margin-left: 30%;
+      color: white;
     }
 
 

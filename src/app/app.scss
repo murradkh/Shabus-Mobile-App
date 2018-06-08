@@ -21,7 +21,7 @@
     bottom:10px;
 }
 ion-input.ng-invalid.ng-touched{
-    border: 2px solid red;
+    border-color:red;
   }
 .alert-top{
     padding: 0 !important;
@@ -31,10 +31,11 @@ ion-input.ng-invalid.ng-touched{
   ion-input{
       font-size: 20px;
       border: 1px solid;
+      color: white;
+      border-radius: 30px !important;
   }
-
   .toast_class{
-text-align: right;
+      text-align: right;
 
   }
   .menu-icons{
@@ -43,14 +44,10 @@ text-align: right;
     border: 3px solid #11161f;
     background-color: white;
   }
-p,h2,h3,h4{
+p{
 color: white;
 }
-ion-input {
-  color: white;
-  border-radius: 50px !important;
 
-}
 
 /////////////////////////////////////////////////////////thats css attributes for splash screen
 #custom-overlay {

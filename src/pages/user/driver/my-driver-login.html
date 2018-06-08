@@ -10,11 +10,11 @@
 <ion-content padding style="background-image: url('images/background-login.jpg')">
   <img src="images/icon.png">
   <form (ngSubmit)='onSignin(f)' #f=ngForm >
-<ion-row class="rounde">
-    <ion-input autofocus  name="phone_number" type="number" placeholder="מספר נייד"  pattern="^05[0-9]{8}$" text-center margin-top ngModel="05" required ></ion-input>
+<ion-row >
+    <ion-input #input  name="PhoneNumber" type="number" placeholder="מספר נייד"  pattern="^05[0-9]{8}$" text-center margin-top ngModel="05" required ></ion-input>
   </ion-row>   
- <ion-row class="round">
-          <ion-input name="password" type="password" placeholder="סיסמא" text-center margin-top ngModel required></ion-input>          
+ <ion-row >
+          <ion-input name="Password" type="password" placeholder="סיסמא" text-center margin-top ngModel required></ion-input>          
         </ion-row> 
     <ion-row>
       <ion-col col-1>
@@ -31,13 +31,9 @@
   </ion-row>
   </form>
 </ion-content>
-
 <ion-footer>
-    <ion-toolbar>
-  <h4 text-center  >
-  @Designed by murrad with ibrahim.    
-  </h4>
-  </ion-toolbar>
-</ion-footer>
-
-<!-- style="background-image: url('images/background-login.jpg')" -->
+    <ion-toolbar >
+      <ion-title text-center>@Designed by murrad.
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>

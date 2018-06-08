@@ -21,8 +21,8 @@ export class MyApp {
   private subscription_onlogin: Subscription;
   private subscription_OnHttpRequest: Subscription;
   // private network_subscribion: Subscription;
-  private logout_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/logout";
-  // private logout_URL: string = "http://127.0.0.1:4990/user/driver/logout";
+  // private logout_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/logout";
+  private logout_URL: string = "http://127.0.0.1:4990/user/driver/logout";
   private splash = false;
   private root: any;
   private pages = [];

@@ -32312,7 +32312,7 @@ ion-navbar.toolbar {
 }
 
 ion-input.ng-invalid.ng-touched {
-  border: 2px solid red;
+  border-color: red;
 }
 
 .alert-top {
@@ -32325,6 +32325,8 @@ ion-input.ng-invalid.ng-touched {
 ion-input {
   font-size: 20px;
   border: 1px solid;
+  color: white;
+  border-radius: 30px !important;
 }
 
 .toast_class {
@@ -32338,13 +32340,8 @@ ion-input {
   background-color: white;
 }
 
-p, h2, h3 {
+p {
   color: white;
-}
-
-ion-input {
-  color: white;
-  border-radius: 50px !important;
 }
 
 #custom-overlay {
@@ -32584,13 +32581,13 @@ page-my-client #clientCounterDiv {
   font-size: 100px;
 }
 
-page-my-client .send {
-  font-size: 40px;
-}
-
 page-my-client .add, page-my-client .remove {
   font-size: 70px;
   color: seagreen;
+}
+
+.send {
+  font-size: 30px;
 }
 
 popover-page .row-dots {
@@ -32621,18 +32618,19 @@ popover-page .dot-red {
 }
 
 popover-page .selected {
-  border: 3px solid #327eff;
+  border: 3px solid #3f3fff;
 }
 
 popover-page img {
   border-radius: 50%;
   margin-left: 20%;
-  border: 3px solid #11161f;
+  border: 3px solid white;
 }
 
 popover-page .pp {
-  font-size: 17px;
-  margin-left: 50px;
+  font-size: 19px;
+  margin-left: 30%;
+  color: white;
 }
 
 page-my-driver-login .logOut {
@@ -32649,6 +32647,16 @@ page-my-driver-login .myColor {
   -ms-flex-align: center;
   align-items: center;
   color: white;
+}
+
+page-forgert-password h2, page-forgert-password h5 {
+  color: white;
+}
+
+.item {
+  background-color: Transparent;
+  color: white;
+  display: inline !important;
 }
 
 page-my-moovit img {

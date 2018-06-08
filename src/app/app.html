@@ -14,8 +14,8 @@
   </ion-header>
   <ion-content style="background-image: url('images/background-login.jpg')">
     <ion-list>
-      <button ion-item style="background-image: url('images/background-login.jpg')" *ngFor="let p of pages" (click)="openPage(p)" text-right menuClose>
-        <h2 >{{p.title}}</h2>
+      <button ion-item class="item"  *ngFor="let p of pages" (click)="openPage(p)" text-right menuClose>
+        <h2 style="color: white;">{{p.title}}</h2>
         <img class="menu-icons" [src]="p.icon" width="50" height="50" item-right>
       </button>
     </ion-list>
@@ -23,9 +23,12 @@
   </p>
   </ion-content>
   <ion-footer>
-    <ion-toolbar >
-      <ion-title text-right>המשמרת מסתיימת עוד {{hours}}:{{minutes}}:{{seconds}}
-      </ion-title>
+    <ion-toolbar text-center>
+      <h4>
+        <b>
+    המשמרת מסתיימת עוד {{hours}}:{{minutes}}:{{seconds}}
+  </b>
+  </h4>
     </ion-toolbar>
   </ion-footer>
 </ion-menu>

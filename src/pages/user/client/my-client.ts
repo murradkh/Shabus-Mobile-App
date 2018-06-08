@@ -20,10 +20,10 @@ export class MyClientPage {
   private Num_Of_Passengers: number = 1;
   private driver_name: string = "";
   private interval: any;
-  private new_ride_URL: string = "https://shabus-mobile-api.herokuapp.com/user/passenger/new-ride";
-  private sending_the_coordination_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/coordination";
-  // private new_ride_URL: string = "http://127.0.0.1:4990/user/passenger/new-ride";
-  // private sending_the_coordination_URL: string = "http://127.0.0.1:4990/user/driver/coordination";
+  // private new_ride_URL: string = "https://shabus-mobile-api.herokuapp.com/user/passenger/new-ride";
+  // private sending_the_coordination_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/coordination";
+  private new_ride_URL: string = "http://127.0.0.1:4990/user/passenger/new-ride";
+  private sending_the_coordination_URL: string = "http://127.0.0.1:4990/user/driver/coordination";
   private subscription_1: Subscription;
   private subscription_2: Subscription;
 
@@ -56,7 +56,7 @@ export class MyClientPage {
       let body = {};
       body['Token'] = this.service.get_token();
       this.service.getlocation().then((resp) => { // in case we received from the serve thats the authnication data is valid(sending the token attached with the response)
-        body['coordination'] = { "latitude": resp.coords.latitude, "longitude": resp.coords.longitude };
+        body['Coordination'] = { "latitude": resp.coords.latitude, "longitude": resp.coords.longitude };
         this.subscription_2 = this.service.Send_Data(body, this.sending_the_coordination_URL).subscribe((response: Response) => { //here we sending the coordination of the driver
         }, () => {
           this.alert_types_service.get_failed_to_connect_to_server_alert().present();

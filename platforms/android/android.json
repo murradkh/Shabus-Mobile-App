@@ -84,7 +84,8 @@
                             "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
                             "count": 1
                         }
-                    ]
+                    ],
+                    "application": []
                 }
             }
         }
