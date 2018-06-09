@@ -17,7 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Alert_types } from '../services/alert_types.service';
 import { MyPopOver } from '../pages/user/client/mypopover/popover';
-// import { Camera } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { MyPopOver } from '../pages/user/client/mypopover/popover';
     Service,
     Alert_types,
     Keyboard,
-    // Camera,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

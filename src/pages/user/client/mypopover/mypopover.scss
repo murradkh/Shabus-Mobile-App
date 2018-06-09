@@ -32,8 +32,11 @@ popover-page {
     }
     img{
       border-radius: 50%;
-      margin-left: 20%;
-      border: 3px solid white;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      // margin-left: 15%;
+      // border: 3px solid ;
     }
     .pp{
       font-size: 19px;

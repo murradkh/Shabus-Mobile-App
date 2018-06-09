@@ -32623,8 +32623,9 @@ popover-page .selected {
 
 popover-page img {
   border-radius: 50%;
-  margin-left: 20%;
-  border: 3px solid white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 popover-page .pp {
@@ -32653,10 +32654,26 @@ page-forgert-password h2, page-forgert-password h5 {
   color: white;
 }
 
+page-registration img {
+  border-radius: 50%;
+  border: 3px solid;
+}
+
+page-registration .center {
+  border-radius: 50%;
+  border: 0px !important;
+  display: block;
+  margin: auto;
+}
+
+page-registration .rotate90 {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
 .item {
   background-color: Transparent;
   color: white;
-  display: inline !important;
 }
 
 page-my-moovit img {

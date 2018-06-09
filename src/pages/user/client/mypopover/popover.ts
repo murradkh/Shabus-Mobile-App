@@ -8,7 +8,7 @@ import { Service } from "../../../../services/service";
   template: ` 
   <ion-list class='item' style="background-image: url('images/background-login.jpg')">
   <ion-item-divider>
-  <img height="100" width="130" [src]="PersonalImage">
+  <img height="130" width="130" [src]="PersonalImage">
   <p class='pp'>{{name}}</p>
   </ion-item-divider>
 <ion-item>

@@ -169,6 +169,16 @@ export class Alert_types {
         });
         return alert;
     }
+    get_camera_fail_alert() {
+        let alert = this.alert.create({
+            message: <any>this.error_icon,
+            title: "<center>שגיאה</center>",
+            subTitle: "<center>קרתה שגיאה בתהליך הצילום, נא לבדוק את הרשאות האפלקצייה לצילום </center>",
+            buttons: ['בסדר']
+        });
+        return alert;
+    }
+
     get_inValid_code_number_toast() {
         const toast = this.toastctrl.create({
             message: "הכנסת מספר תקוף לא תקין, נא לנסות שוב",

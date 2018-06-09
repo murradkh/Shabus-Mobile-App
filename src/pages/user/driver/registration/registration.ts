@@ -5,7 +5,7 @@ import { Alert_types } from '../../../../services/alert_types.service';
 import { Service } from '../../../../services/service';
 import { Response } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
-// import { Camera, CameraOptions} from '@ionic-native/camera';
+import { Camera, CameraOptions} from '@ionic-native/camera';
 /**
  * Generated class for the RegistrationPage page.
  *
@@ -21,14 +21,15 @@ export class RegistrationPage {
   @ViewChild('input1') Input;
   @ViewChild('password') PasswordInput;
   private Registration_URl:string = "http://127.0.0.1:4990/user/driver/registration";
+  private Img:string = "images/camera.png";
+  private  CameraOptions:CameraOptions;
     // private Registration_URl: string = 'https://shabus-mobile-api.herokuapp.com/user/driver/registration';
   private Http_Subscription: Subscription;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private alertService:Alert_types,
               private service:Service,
-              // private camera:Camera
-            ) {
+              private camera:Camera) {
   }
 
   ngOnDestroy() {
@@ -42,17 +43,29 @@ export class RegistrationPage {
       this.Input.setFocus();
     }, 500);
 
+    this.CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true
+      // correctOrientation: true,
+      // targetWidth: 800,
+      // targetHeight:600
+    }
 
     }
+
   OnSubmit(form:NgForm){
 
     let loading =this.alertService.get_loading_alert();
     loading.present();
-    this.Http_Subscription =this.service.Send_Data(form.value,this.Registration_URl).subscribe(
+    let body = form.value;
+    body['Image'] = this.Img;
+    this.Http_Subscription =this.service.Send_Data(body,this.Registration_URl).subscribe(
       (response:Response)=>{
         loading.dismiss();
-        let body = response.json();
-        console.log(body)
+        body = response.json();
         if(body['Status']=='Accept'){
 this.alertService.get_new_user_registered_alert().present();
 this.navCtrl.popToRoot();
@@ -66,23 +79,14 @@ this.navCtrl.popToRoot();
       
   }
 
-//   takePicture(){
-//     const options: CameraOptions = {
-//       quality: 100,
-//       destinationType: this.camera.DestinationType.DATA_URL,
-//       encodingType: this.camera.EncodingType.JPEG,
-//       mediaType: this.camera.MediaType.PICTURE,
-//       correctOrientation: true
-
-//     }
-
-//   this.camera.getPicture(options).then((imageData) => {
-//     console.log(imageData);
-//    // imageData is either a base64 encoded string or a file URI
-//    // If it's base64:
-//    let base64Image = 'data:image/jpeg;base64,' + imageData;
-//   }, (err) => {
-//    // Handle error
-//   });
-// }
+  takePicture(){
+  this.camera.getPicture(this.CameraOptions).then((imageData) => {
+   let base64Image = 'data:image/jpeg;base64,' + imageData;
+   this.Img = base64Image;
+  }, (err) => {
+    console.log(err);
+    alert(err);
+    this.alertService.get_camera_fail_alert().present();
+  });
+}
 }

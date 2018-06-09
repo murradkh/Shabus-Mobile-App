@@ -23,14 +23,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-compat": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-compat@^1.0.0"
-        },
-        "is_top_level": false,
-        "variables": {}
-    },
     "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
@@ -83,6 +75,30 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-networkinterface"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-camera": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-camera@^2.4.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-compat": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-compat@1.2.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-mauron85-background-geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-mauron85-background-geolocation@2.3.2"
         },
         "is_top_level": true,
         "variables": {}

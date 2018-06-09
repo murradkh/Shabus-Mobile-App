@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content padding style="background-image: url('images/background-login.jpg')">
-  <img src="images/signup.png" style="opacity: 0.4;position: absolute;top: 10%;right:1%;">
-  <button ion-button (click)="takePicture()"></button>
+  <img src="images/send.png" style="opacity: 0.4;position: absolute;top: 20%;margin: auto; border:0px !important">
   <form #f=ngForm (ngSubmit)='OnSubmit(f)'>
     <ion-grid>
       <ion-row>
+            <img [src]="Img" height="110" width="110" class="center" (click)="takePicture()" class=" center">
       </ion-row>
       <ion-row>
         <img src="images/name.png" width="35" height="35">&ensp;
@@ -63,7 +63,7 @@
 
   </form>
 </ion-content>
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

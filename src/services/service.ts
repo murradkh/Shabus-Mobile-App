@@ -14,7 +14,7 @@ export class Service {
     readonly login_Event: Subject<void> = new Subject<void>();
     private token: string = null;
     private decoded_token: {} = {};
-    private PersonalImage: string;
+    private PersonalImage: string = null;
     // private url_of_moovit_users: string = "https://shabus-mobile-api.herokuapp.com/user/moovit";
     private url_of_moovit_users: string = "http://127.0.0.1:4990/user/moovit";
 
@@ -24,6 +24,7 @@ export class Service {
         private alertservice: Alert_types) {
 
         this.token = localStorage.getItem('token');
+        this.PersonalImage = localStorage.getItem('img');
         this.set_decoded_token();
 
     }
@@ -38,6 +39,8 @@ export class Service {
 
     setImage(image: string) {
         this.PersonalImage = image;
+        localStorage.setItem('img', image);
+
     }
 
     getImage() {
