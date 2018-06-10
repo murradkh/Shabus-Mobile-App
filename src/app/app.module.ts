@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, ActionSheetController } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { Service } from '../services/service';
@@ -56,6 +56,7 @@ import { Camera } from '@ionic-native/camera';
     Alert_types,
     Keyboard,
     Camera,
+    ActionSheetController,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

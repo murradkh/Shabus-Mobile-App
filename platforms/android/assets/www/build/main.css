@@ -32654,6 +32654,13 @@ page-forgert-password h2, page-forgert-password h5 {
   color: white;
 }
 
+page-forgert-password img {
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 page-registration img {
   border-radius: 50%;
   border: 3px solid;

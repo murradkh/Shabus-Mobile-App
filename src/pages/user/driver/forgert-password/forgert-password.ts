@@ -23,17 +23,20 @@ export class ForgertPasswordPage {
 
   private phone_number: string = "05";
   private http_subscription: Subscription;
-  private ForgetPassword_URL: string = "http://127.0.0.1:4990/user/driver/forget-password";
-  // private CheckCodeNumber_URL: string= "https://shabus-mobile-api.herokuapp.com/user/driver/check-code-number";
-  private CheckCodeNumber_URL: string = "http://127.0.0.1:4990/user/driver/check-code-number";
-  private CheckPassword_URL: string = 'http://127.0.0.1:4990/user/driver/change-password';
+  // private ForgetPassword_URL: string = "http://127.0.0.1:4990/user/driver/forget-password";
+  private ForgetPassword_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/forget-password";  
+  private CheckCodeNumber_URL: string= "https://shabus-mobile-api.herokuapp.com/user/driver/check-code-number";
+  // private CheckCodeNumber_URL: string = "http://127.0.0.1:4990/user/driver/check-code-number";
+  // private CheckPassword_URL: string = 'http://127.0.0.1:4990/user/driver/change-password';
+  private CheckPassword_URL: string = 'https://shabus-mobile-api.herokuapp.com/user/driver/change-password';
+  
 
   private phoneNumberValid: boolean = false;
   private CodeNumberValid: boolean = false;
   private Duration: number;
   private CodeLength: string;
   private Code: string;
-  private Name: string;
+  private image: string;
   private Seconds: number;
   private Minutes: number;
   private timeout: any;
@@ -85,7 +88,7 @@ export class ForgertPasswordPage {
         this.Duration = body.Duration;
         this.CodeLength = body.CodeLength;
         this.pattern = "^[0-9]{" + this.CodeLength + "}$";
-        this.Name = body.Name;
+        this.image = body.Image;
         localStorage.setItem('temprorey_token', body['Token']);
         setTimeout(() => {
           this.input2.setFocus();

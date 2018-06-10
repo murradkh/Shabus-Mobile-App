@@ -27,10 +27,16 @@ import { Service } from "../../../../services/service";
         </ion-col>
       </ion-row>
       </ion-item>
+      <button ion-item block (click)="Action('settings')" >
+      <p item-right class='pp'>הגדרות</p>
+      <ion-icon name="settings" item-right small></ion-icon>
+      </button> 
+
       <button ion-item block (click)="Action('logout')" >
       <p item-right class='pp'>&ensp;התנתק</p>
       <ion-icon name='log-out' item-right small></ion-icon>
        </button> 
+      
  </ion-list>
   `
 })

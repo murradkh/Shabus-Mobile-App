@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Alert_types } from '../../../services/alert_types.service';
 import { MyPopOver } from './mypopover/popover';
 import { MyMoovitPage } from '../moovit/my-moovit';
+import { RegistrationPage } from '../driver/registration/registration';
 @IonicPage()
 @Component({
   selector: 'page-my-client',
@@ -20,10 +21,10 @@ export class MyClientPage {
   private Num_Of_Passengers: number = 1;
   private driver_name: string = "";
   private interval: any;
-  // private new_ride_URL: string = "https://shabus-mobile-api.herokuapp.com/user/passenger/new-ride";
-  // private sending_the_coordination_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/coordination";
-  private new_ride_URL: string = "http://127.0.0.1:4990/user/passenger/new-ride";
-  private sending_the_coordination_URL: string = "http://127.0.0.1:4990/user/driver/coordination";
+  private new_ride_URL: string = "https://shabus-mobile-api.herokuapp.com/user/passenger/new-ride";
+  private sending_the_coordination_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/coordination";
+  // private new_ride_URL: string = "http://127.0.0.1:4990/user/passenger/new-ride";
+  // private sending_the_coordination_URL: string = "http://127.0.0.1:4990/user/driver/coordination";
   private subscription_1: Subscription;
   private subscription_2: Subscription;
 
@@ -67,7 +68,7 @@ export class MyClientPage {
         this.logout();
       });
     }, 5000);
-    this.driver_name = this.service.get_driver_name();
+    this.driver_name = this.service.get_driver_keyValue("Name");
   }
 
   addClient() {
@@ -106,8 +107,8 @@ export class MyClientPage {
         this.logout();
       }
       else this.navCtrl.push(MyMoovitPage, { Phone_Number: ride['Phone_Number'] });
-        
-   this.form.reset();
+
+      this.form.reset();
 
     }), (error) => {
       loading.dismiss();
@@ -121,12 +122,19 @@ export class MyClientPage {
     let popover = this.popoverctrl.create(MyPopOver, { 'contentEle': this.contentEle, "name": this.driver_name });
     popover.present({ ev: event });
     popover.onDidDismiss((response) => {
+      if (response != null) {
+        if (response.action == 'logout') {
+          this.alert_types_service.get_logout_alert(this.driver_name).present();
+          this.logout();
+        } else if (response.action == 'settings') {
+          // this.navCtrl.push(RegistrationPage,{"edit":true});
+    
+          this.navCtrl.push(RegistrationPage, { "Name": this.service.get_driver_keyValue("Name"), "Email": this.service.get_driver_keyValue("Email"), "Birthday": this.service.get_driver_keyValue("Birthday"), "PhoneNumber": this.service.get_driver_keyValue("PhoneNumber"), "Image": this.service.getImage()});
 
-      if (response != null && response.action == 'logout') {
-        this.alert_types_service.get_logout_alert(this.driver_name).present();
-        this.logout();
+        }
       }
     });
+
   }
 
 

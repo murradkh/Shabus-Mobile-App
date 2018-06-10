@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title text-center>הרשמה</ion-title>
+    <ion-title text-center>{{mode}}</ion-title>
 
   </ion-navbar>
 </ion-header>
@@ -11,7 +11,7 @@
   <form #f=ngForm (ngSubmit)='OnSubmit(f)'>
     <ion-grid>
       <ion-row>
-            <img [src]="Img" height="110" width="110" class="center" (click)="takePicture()" class=" center">
+            <img [src]="Img" height="110" width="110" class="center" (click)="presentActionSheet()" class=" center">
       </ion-row>
       <ion-row>
         <img src="images/name.png" width="35" height="35">&ensp;

@@ -15,8 +15,8 @@ export class Service {
     private token: string = null;
     private decoded_token: {} = {};
     private PersonalImage: string = null;
-    // private url_of_moovit_users: string = "https://shabus-mobile-api.herokuapp.com/user/moovit";
-    private url_of_moovit_users: string = "http://127.0.0.1:4990/user/moovit";
+    private url_of_moovit_users: string = "https://shabus-mobile-api.herokuapp.com/user/moovit";
+    // private url_of_moovit_users: string = "http://127.0.0.1:4990/user/moovit";
 
 
     constructor(private http: Http,
@@ -106,12 +106,8 @@ export class Service {
         return this.http.post(URL, body, options);
     }
 
-    get_driver_name() { // returning the driver name from the decoded token
-        return this.decoded_token['Name'];
-    }
-
-    get_driver_email() { // returning the driver email from the decoded token
-        return this.decoded_token['Email'];
+    get_driver_keyValue(key) { // returning the driver name from the decoded token
+        return this.decoded_token[key];
     }
 
     clearStorage() {

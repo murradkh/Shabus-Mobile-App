@@ -42,15 +42,6 @@
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-mauron85-background-geolocation": {
-            "ICON": "@mipmap/icon",
-            "SMALL_ICON": "@mipmap/icon",
-            "ACCOUNT_NAME": "@string/app_name",
-            "ACCOUNT_LABEL": "@string/app_name",
-            "ACCOUNT_TYPE": "$PACKAGE_NAME.account",
-            "CONTENT_AUTHORITY": "$PACKAGE_NAME",
-            "PACKAGE_NAME": "io.ionic.starter"
         }
     },
     "dependent_plugins": {}

@@ -29,7 +29,7 @@ MyCouponsPageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__my_coupons__["a" /* MyCouponsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_coupons__["a" /* MyCouponsPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_coupons__["a" /* MyCouponsPage */]),
         ],
         exports: [
             __WEBPACK_IMPORTED_MODULE_2__my_coupons__["a" /* MyCouponsPage */]

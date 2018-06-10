@@ -86,15 +86,23 @@ export class Alert_types {
         return alert;
     }
 
-    get_new_user_registered_alert() {
+    get_registration_alert(message) {
         let alert = this.alert.create({
             message: <any>this.success_icon,
-            title: "<center>תהליך הרישום עבר בהצחלה, תודה</center>",
+            title: "<center>"+message+"</center>",
             buttons: ['בסדר']
         });
         return alert;
     }
 
+    get_user() {
+        let alert = this.alert.create({
+            message: <any>this.success_icon,
+            title: "<center></center>",
+            buttons: ['בסדר']
+        });
+        return alert;
+    }
     get_driver_exist_alert(name) {
         let alert = this.alert.create({
             message: <any>this.success_icon,

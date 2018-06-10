@@ -18,8 +18,8 @@ import { RegistrationPage } from './registration/registration';
 
 export class MyDriverLoginPage {
   @ViewChild('input') input;
-  // private url_of_Drivers: string = 'https://shabus-mobile-api.herokuapp.com/user/driver/login';
-  private url_of_Drivers: string = 'http://127.0.0.1:4990/user/driver/login';
+  private url_of_Drivers: string = 'https://shabus-mobile-api.herokuapp.com/user/driver/login';
+  // private url_of_Drivers: string = 'http://127.0.0.1:4990/user/driver/login';
   private pages: { title: string, page: any }[] = [{ title: "שכחתי סימסה", page: ForgertPasswordPage }, { title: "הרשמה", page: RegistrationPage }];
   private subscription: Subscription;
 
@@ -55,7 +55,7 @@ export class MyDriverLoginPage {
         if (body['Status'] == 'Accept') {// in case we received from the serve thats the servicenication data is valid(sending the token attached with the response)
           this.service.settoken(body['Token']);
           this.service.setImage(body['Image']);
-          this.alert_types_service.get_driver_exist_alert(this.service.get_driver_name()).present();
+          this.alert_types_service.get_driver_exist_alert(this.service.get_driver_keyValue("Name")).present();
           this.navCtrl.setRoot(MyClientPage);
 
         } else // in case the detail of the user is not valid 

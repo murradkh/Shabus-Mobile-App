@@ -111,14 +111,6 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
-    },
-    {
-        "id": "cordova-plugin-mauron85-background-geolocation.backgroundGeolocation",
-        "file": "plugins/cordova-plugin-mauron85-background-geolocation/www/backgroundGeolocation.js",
-        "pluginId": "cordova-plugin-mauron85-background-geolocation",
-        "clobbers": [
-            "backgroundGeolocation"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -135,8 +127,7 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.1",
     "cordova-sms-plugin": "0.1.11",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-camera": "2.4.1",
-    "cordova-plugin-mauron85-background-geolocation": "2.3.2"
+    "cordova-plugin-camera": "2.4.1"
 };
 // BOTTOM OF METADATA
 });
