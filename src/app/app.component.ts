@@ -78,7 +78,7 @@ export class MyApp {
     ];
 
     this.splash = true;
-    setTimeout(() => this.splash = false, 2500); // disable the splash after 3 seconds
+    setTimeout(() => this.splash = false, 3000); // disable the splash after 3 seconds
     // let toast;
     //     console.log(navigator.onLine);
     // console.log(this.network.type);

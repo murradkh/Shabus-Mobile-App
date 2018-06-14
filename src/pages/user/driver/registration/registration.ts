@@ -59,7 +59,6 @@ export class RegistrationPage {
     let data = this.navParams.data;
     if (data['Name'] != undefined) { // thats mean we are in edit mode
       // console.log(data)
-      // console.log(data['Birthday']);
       this.editMode = true;
       this.mode = 'עריכה';
       this.URL = this.edit_URL;
@@ -92,7 +91,7 @@ export class RegistrationPage {
             this.navCtrl.popToRoot();
           }
         } else {
-          this.alertService.get_failed_to_connect_to_server_alert().present();
+          this.alertService.get_driver_already_exist_alert().present();
         };
       }, (error) => {
         loading.dismiss();
@@ -116,7 +115,6 @@ export class RegistrationPage {
     }
 
     this.camera.getPicture(cameraOptions).then((imageData) => {
-      alert(imageData);
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.Img = base64Image;
     }, (err) => {

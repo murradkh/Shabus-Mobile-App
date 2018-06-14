@@ -32318,10 +32318,14 @@ ion-navbar.toolbar {
   align-items: center !important;
 }
 
+ion-input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
 ion-input {
   font-size: 20px;
   border: 1px solid;
-  color: white;
+  color: black;
   border-radius: 30px !important;
 }
 
@@ -32337,7 +32341,7 @@ ion-input {
 }
 
 p {
-  color: white;
+  color: black;
 }
 
 #custom-overlay {
@@ -32627,7 +32631,7 @@ popover-page img {
 popover-page .pp {
   font-size: 19px;
   margin-left: 30%;
-  color: white;
+  color: black;
 }
 
 page-my-driver-login .logOut {
@@ -32643,11 +32647,11 @@ page-my-driver-login .myColor {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  color: white;
+  color: black;
 }
 
 page-forgert-password h2, page-forgert-password h5 {
-  color: white;
+  color: black;
 }
 
 page-forgert-password img {
@@ -32676,7 +32680,7 @@ page-registration .rotate90 {
 
 .item {
   background-color: Transparent;
-  color: white;
+  color: black;
 }
 
 page-my-moovit img {

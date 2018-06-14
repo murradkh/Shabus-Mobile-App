@@ -19,7 +19,7 @@ export class MyMoovitPage {
     private service: Service,
     private alert_service: Alert_types) {
 
-    this.phoneNumber = this.navParams.get('Phone_Number');
+    this.phoneNumber = this.navParams.get('PhoneNumber');
   }
 
   ngOnDestroy() { //when client page will be destroied, it will activate this function

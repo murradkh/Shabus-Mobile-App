@@ -106,7 +106,7 @@ export class MyClientPage {
         this.alert_types_service.get_failed_to_connect_to_server_alert().present();
         this.logout();
       }
-      else this.navCtrl.push(MyMoovitPage, { Phone_Number: ride['Phone_Number'] });
+      else this.navCtrl.push(MyMoovitPage, { PhoneNumber: ride['PhoneNumber'] });
 
       this.form.reset();
 
@@ -128,7 +128,6 @@ export class MyClientPage {
           this.logout();
         } else if (response.action == 'settings') {
           // this.navCtrl.push(RegistrationPage,{"edit":true});
-    
           this.navCtrl.push(RegistrationPage, { "Name": this.service.get_driver_keyValue("Name"), "Email": this.service.get_driver_keyValue("Email"), "Birthday": this.service.get_driver_keyValue("Birthday"), "PhoneNumber": this.service.get_driver_keyValue("PhoneNumber"), "Image": this.service.getImage()});
 
         }
