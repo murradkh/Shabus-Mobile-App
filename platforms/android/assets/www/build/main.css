@@ -32311,10 +32311,6 @@ ion-navbar.toolbar {
   bottom: 10px;
 }
 
-ion-input.ng-invalid.ng-touched {
-  border-color: red;
-}
-
 .alert-top {
   padding: 0 !important;
   -webkit-align-items: center !important;

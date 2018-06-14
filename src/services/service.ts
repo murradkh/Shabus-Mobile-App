@@ -113,6 +113,7 @@ export class Service {
     clearStorage() {
         localStorage.clear();
         this.token = null;
+        this.PersonalImage=null;
     }
 
     Moovit_user_checking(phoneNumber) {

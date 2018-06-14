@@ -66,7 +66,7 @@ export class MyDriverLoginPage {
         loading.dismiss();
         this.alert_types_service.get_failed_to_connect_to_server_alert().present();
       });
-    }).catch((error: PositionError) => {  //in case the GBS feature is not active and we can't use it.
+    }).catch((error) => {  //in case the GBS feature is not active and we can't use it.
       loading.dismiss();
       this.alert_types_service.get_gbs_alert().present();
       return;

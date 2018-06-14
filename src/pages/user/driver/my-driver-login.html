@@ -14,7 +14,7 @@
     <ion-input #input  name="PhoneNumber" type="number" placeholder="מספר נייד"  pattern="^05[0-9]{8}$" text-center margin-top ngModel="05" required ></ion-input>
   </ion-row>   
  <ion-row >
-          <ion-input name="Password" type="password" placeholder="סיסמא" text-center margin-top ngModel required></ion-input>          
+          <ion-input name="Password" type="password" placeholder="סיסמא" text-center margin-top ngModel required pattern="^(([0-9]+[a-zA-z]+[0-9]*)|([a-zA-Z]+[0-9]+[a-zA-Z]*))+$"></ion-input>          
         </ion-row> 
     <ion-row>
       <ion-col col-1>

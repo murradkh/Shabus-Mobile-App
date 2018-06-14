@@ -94,7 +94,7 @@ export class MyClientPage {
 
     let ride = form.value;
     ride['Token'] = this.service.get_token();
-    ride['Num_Of_Passengers'] = this.Num_Of_Passengers
+    ride['Num of passengers'] = this.Num_Of_Passengers
     let loading = this.alert_types_service.get_loading_alert();
     loading.present();
     this.subscription_1 = this.service.Send_Data(ride, this.new_ride_URL).subscribe((response: Response) => {
