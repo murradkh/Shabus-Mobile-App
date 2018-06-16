@@ -79,7 +79,8 @@ export class ForgertPasswordPage {
 
   CheckPhoneNumber() {
 
-    this.http_subscription = this.service.Send_Data({ "PhoneNumber": this.phone_number }, this.ForgetPassword_URL).subscribe((response: Response) => {
+    // this.service.Send_Data({ "PhoneNumber": this.phone_number }, this.ForgetPassword_URL).then((response: Response) => {    
+      this.http_subscription = this.service.Send_Data({ "PhoneNumber": this.phone_number }, this.ForgetPassword_URL).subscribe((response: Response) => {
       let body = response.json();
       if (body['Status'] == "Reject")
         this.alertService.get_driver_not_exist_alert().present();
@@ -101,6 +102,7 @@ export class ForgertPasswordPage {
       this.loading.dismiss();
     }, (error) => {
       this.loading.dismiss();
+      alert(error);
       this.alertService.get_failed_to_connect_to_server_alert().present();
     });
   }
@@ -108,7 +110,9 @@ export class ForgertPasswordPage {
   CheckCodeNumber() {// if the user entered his phone number and the validation code
 
     let token = localStorage.getItem('temprorey_token');
-    this.http_subscription = this.service.Send_Data({ 'Token': token, "Restoration code": this.Code }, this.CheckCodeNumber_URL).subscribe(
+    //  this.service.Send_Data({ 'Token': token, "Restoration code": this.Code }, this.CheckCodeNumber_URL).then(
+      this.http_subscription = this.service.Send_Data({ 'Token': token, "Restoration code": this.Code }, this.CheckCodeNumber_URL).subscribe(
+
       (response: Response) => {
         let body = response.json();
         if (body['Status'] == 'Accept') {
@@ -134,7 +138,9 @@ export class ForgertPasswordPage {
       return;
     }
     let token = localStorage.getItem('temprorey_token');
+  //  this.service.Send_Data({ 'Token': token,"NewPassword":this.NewPassword1 }, this.CheckPassword_URL).then((response: Response) => {
     this.http_subscription = this.service.Send_Data({ 'Token': token,"NewPassword":this.NewPassword1 }, this.CheckPassword_URL).subscribe((response: Response) => {
+     
       let body = response.json();
       if (body['Status'] == 'Accept') {
         this.loading.dismiss();

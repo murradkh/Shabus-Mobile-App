@@ -128,7 +128,7 @@ export class MyClientPage {
           this.logout();
         } else if (response.action == 'settings') {
           // this.navCtrl.push(RegistrationPage,{"edit":true});
-          this.navCtrl.push(RegistrationPage, { "Name": this.service.get_driver_keyValue("Name"), "Email": this.service.get_driver_keyValue("Email"), "Birthday": this.service.get_driver_keyValue("Birthday"), "PhoneNumber": this.service.get_driver_keyValue("PhoneNumber"), "Image": this.service.getImage()});
+          this.navCtrl.push(RegistrationPage, { "Name": this.service.get_driver_keyValue("Name"), "Email": this.service.get_driver_keyValue("Email"), "Birthday": this.service.get_driver_keyValue("Birthday"), "PhoneNumber": this.service.get_driver_keyValue("PhoneNumber"), "Image": this.service.getImage() });
 
         }
       }

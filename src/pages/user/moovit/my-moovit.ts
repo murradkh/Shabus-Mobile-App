@@ -12,7 +12,7 @@ import { Alert_types } from '../../../services/alert_types.service'
 export class MyMoovitPage {
 
   private phoneNumber: string = "";
-  private sending_data_subscription: Subscription;
+  // private sending_data_subscription: Subscription;
 
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
@@ -22,10 +22,10 @@ export class MyMoovitPage {
     this.phoneNumber = this.navParams.get('PhoneNumber');
   }
 
-  ngOnDestroy() { //when client page will be destroied, it will activate this function
-    if (this.sending_data_subscription != undefined)
-      this.sending_data_subscription.unsubscribe();
-  }
+  // ngOnDestroy() { //when client page will be destroied, it will activate this function
+  //   if (this.sending_data_subscription != undefined)
+  //     this.sending_data_subscription.unsubscribe();
+  // }
 
   go_back(status: string) {
     if (status == "yes") {

@@ -49,7 +49,9 @@ export class MyDriverLoginPage {
     let body = form.value;
     this.service.getlocation().then((resp) => { // in case the GBS feature is active and we can use it
       body['Coordination'] = { "latitude": resp.coords.latitude, "longitude": resp.coords.longitude };
+      //  this.service.Send_Data(body, this.url_of_Drivers).then((response: Response) => { //send the serviceenication details to the server
       this.subscription = this.service.Send_Data(body, this.url_of_Drivers).subscribe((response: Response) => { //send the serviceenication details to the server
+ 
         let body = response.json();
         loading.dismiss();
         if (body['Status'] == 'Accept') {// in case we received from the serve thats the servicenication data is valid(sending the token attached with the response)

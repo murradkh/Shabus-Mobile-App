@@ -4,7 +4,7 @@ import * as jwt_decode from 'jwt-decode';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Subject } from 'rxjs/Subject';
 import { Alert_types } from './alert_types.service';
-// import { MyMoovitPage } from '../pages/user/moovit/my-moovit';
+// import { HTTP } from '@ionic-native/http';
 import { Response } from '@angular/http';
 
 
@@ -21,7 +21,9 @@ export class Service {
 
     constructor(private http: Http,
         private geolocation: Geolocation,
-        private alertservice: Alert_types) {
+        private alertservice: Alert_types,
+        // public httpPlugin: HTTP
+    ) {
 
         this.token = localStorage.getItem('token');
         this.PersonalImage = localStorage.getItem('img');

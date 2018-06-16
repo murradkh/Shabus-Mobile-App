@@ -76,7 +76,9 @@ export class RegistrationPage {
     body['Image'] = this.Img;
     if (this.editMode == true)
       body['Token'] = this.service.get_token();
-    this.Http_Subscription = this.service.Send_Data(body, this.URL).subscribe(
+    //  this.service.Send_Data(body, this.URL).then(
+      this.Http_Subscription = this.service.Send_Data(body, this.URL).subscribe(
+      
       (response: Response) => {
         loading.dismiss();
         body = response.json();
@@ -135,13 +137,13 @@ export class RegistrationPage {
             this.Img = 'images/camera.png';
           }
         }, {
-          text: 'תפתח מצלמה',
+          text: 'פתח מצלמה',
           icon: "camera",
           handler: () => {
             this.takePicture(this.camera.PictureSourceType.CAMERA);
           }
         }, {
-          text: 'בחור תמונה',
+          text: 'בחר תמונה',
           icon: "image",
           handler: () => {
             this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);

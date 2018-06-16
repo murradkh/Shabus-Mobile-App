@@ -18,6 +18,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Alert_types } from '../services/alert_types.service';
 import { MyPopOver } from '../pages/user/client/mypopover/popover';
 import { Camera } from '@ionic-native/camera';
+import { Network } from '@ionic-native/network';
+// import { HTTP } from '@ionic-native/http';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { Camera } from '@ionic-native/camera';
     Alert_types,
     Keyboard,
     Camera,
+    Network,
+    // HTTP,
     ActionSheetController,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
