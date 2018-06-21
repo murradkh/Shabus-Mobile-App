@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Service } from '../services/service';
 import { MyDriverLoginPage } from '../pages/user/driver/my-driver-login';//--------//
 import { MyClientPage } from '../pages/user/client/my-client';//--------//
-import { Network } from '@ionic-native/network';
+// import { Network } from '@ionic-native/network';
 import { ToastController } from 'ionic-angular'
 import { Subscription } from 'rxjs/Subscription';
 import { Alert_types } from '../services/alert_types.service';
@@ -20,7 +20,6 @@ export class MyApp {
   private subscription_OnLogout: Subscription;
   private subscription_onlogin: Subscription;
   private subscription_OnHttpRequest: Subscription;
-  private network_subscribion: Subscription;
   private logout_URL: string = "https://shabus-mobile-api.herokuapp.com/user/driver/logout";
   // private logout_URL: string = "http://127.0.0.1:4990/user/driver/logout";
   private splash = false;
@@ -35,7 +34,7 @@ export class MyApp {
     private splashScreen: SplashScreen,
     private service: Service,
     private menuCtrl: MenuController,
-    private network: Network,
+    // private network: Network,
     private alertservice: Alert_types,
     private toastctrl: ToastController) {
     this.platform.ready().then(() => {
@@ -79,22 +78,20 @@ export class MyApp {
 
     this.splash = true;
     setTimeout(() => this.splash = false, 3000); // disable the splash after 3 seconds
-    let toast;
-    if (!navigator.onLine) { // checking if we had internet connection when the app opened
-      toast = this.alertservice.get_no_enternet_connection_alert();
-      toast.present();
-    }
+    // if (!navigator.onLine) { // checking if we had internet connection when the app opened
+    //   this.toast = this.alertservice.get_no_enternet_connection_alert();
+    //   this.toast.present();
+    // }
 
-    this.network_subscribion = this.network.onDisconnect().subscribe(() => { // subscriping to the disconnection event
-      console.log("afs");
-      toast = this.alertservice.get_no_enternet_connection_alert();
-      toast.present();
-    });
+    // this.network_subscribion = this.network.onDisconnect().subscribe(() => { // subscriping to the disconnection event
+    //   this.toast = this.alertservice.get_no_enternet_connection_alert();
+    //   this.toast.present();
+    // });
 
-    this.network_subscribion = this.network.onConnect().subscribe(() => { // subscriping to the reconnection event(after i was disconnected)
-      if (toast != undefined)
-        toast.dismiss();
-    });
+    // this.network_subscribion = this.network.onchange().subscribe((tset) => { // subscriping to the reconnection event(after i was disconnected)
+    //   this.toast = this.alertservice.get_no_enternet_connection_alert();
+    //   this.toast.present();
+    // });
 
     if (this.service.is_Authinicated()) {  //here we checking if the user have valid token in storage(not expired)
       this.root = MyClientPage;

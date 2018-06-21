@@ -62,7 +62,7 @@ export class RegistrationPage {
       this.editMode = true;
       this.mode = 'עריכה';
       this.URL = this.edit_URL;
-      this.form.setValue({ "Name": data['Name'], "PhoneNumber": data['PhoneNumber'], "Birthday": data['Birthday'], "Password": "", "Email": data['Email'] });
+      this.form.setValue({ "Name": data['Name'], "PhoneNumber": data['PhoneNumber'], "BirthDate": data['BirthDate'], "Password": "", "Email": data['Email'] });
       this.Img = data['Image'];
 
     }
@@ -121,8 +121,8 @@ export class RegistrationPage {
       this.Img = base64Image;
     }, (err) => {
       console.log(err);
-      alert(err);
-      this.alertService.get_camera_fail_alert().present();
+      // alert(err);
+      // this.alertService.get_camera_fail_alert().present();
     });
   }
 

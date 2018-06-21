@@ -57,7 +57,7 @@ export class MyClientPage {
       let body = {};
       body['Token'] = this.service.get_token();
       this.service.getlocation().then((resp) => { // in case we received from the serve thats the authnication data is valid(sending the token attached with the response)
-        body['Coordination'] = { "latitude": resp.coords.latitude, "longitude": resp.coords.longitude };
+        body['Coordination'] = { "lat": resp.coords.latitude, "lng": resp.coords.longitude };
         this.subscription_2 = this.service.Send_Data(body, this.sending_the_coordination_URL).subscribe((response: Response) => { //here we sending the coordination of the driver
         }, () => {
           this.alert_types_service.get_failed_to_connect_to_server_alert().present();
@@ -128,7 +128,7 @@ export class MyClientPage {
           this.logout();
         } else if (response.action == 'settings') {
           // this.navCtrl.push(RegistrationPage,{"edit":true});
-          this.navCtrl.push(RegistrationPage, { "Name": this.service.get_driver_keyValue("Name"), "Email": this.service.get_driver_keyValue("Email"), "Birthday": this.service.get_driver_keyValue("Birthday"), "PhoneNumber": this.service.get_driver_keyValue("PhoneNumber"), "Image": this.service.getImage() });
+          this.navCtrl.push(RegistrationPage, { "Name": this.service.get_driver_keyValue("Name"), "Email": this.service.get_driver_keyValue("Email"), "BirthDate": this.service.get_driver_keyValue("BirthDate"), "PhoneNumber": this.service.get_driver_keyValue("PhoneNumber"), "Image": this.service.getImage() });
 
         }
       }

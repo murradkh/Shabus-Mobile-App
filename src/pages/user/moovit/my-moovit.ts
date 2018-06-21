@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Service } from '../../../services/service';
-import { Subscription } from 'rxjs/Subscription';
 import { Alert_types } from '../../../services/alert_types.service'
 
 @IonicPage()
