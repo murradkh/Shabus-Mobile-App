@@ -3,6 +3,8 @@
 3) C:\Users\myusername\AppData\Local\Android\sdk\platform-tools
 4) Path\to\adb\adb kill-server
    Path\to\adb\adb start-server
+
+4) ionic cordova resources   
 5)  // ngOnInit() {
 
   // }
@@ -14,3 +16,16 @@
 
 6)  pattern="^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$"
 7) ionic generate page "name"
+8)
+    // let remainng_time = this.service.get_Remainng_Time() //in millisconds
+    // console.log(remainng_time);
+    // this.hours = Math.floor(remainng_time / 3600 / 1000);
+    // remainng_time -= (this.hours * 3600 * 1000);
+    // this.minutes = Math.floor(remainng_time / 60 / 1000);
+    // remainng_time -= (this.minutes * 60 * 1000);
+    // this.seconds = Math.floor(remainng_time / 1000);
+    // console.log(this.hours);
+    // console.log(this.minutes);
+    // console.log(this.seconds);
+
+

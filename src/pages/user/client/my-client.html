@@ -16,7 +16,7 @@
 <ion-content padding #contentEle style="background-image: url('images/background-login.jpg')">
   <img src="images/icon.png">
   <form (ngSubmit)='onSubmit(f)' #f=ngForm>
-    <ion-input  name="PhoneNumber" type="number" placeholder="מספר נייד" text-center [(ngModel)]="phoneNumber" margin-top required
+    <ion-input name="PhoneNumber" type="text" placeholder="מספר נייד" text-center [(ngModel)]="phoneNumber" margin-top required
       pattern="^05[0-9]{8}$" ngModel></ion-input>
     <ion-grid>
       <ion-row>
@@ -26,11 +26,10 @@
           <ion-icon class="remove" name="add-circle" (click)="addClient()"></ion-icon>
           <span id="clientCounterDiv">{{Num_Of_Passengers}}</span>
           <ion-icon class="add" name="remove-circle" (click)="removeClient()"></ion-icon>
-
         </ion-col>
       </ion-row>
     </ion-grid>
-    <button type="submit" ion-button round block color="primary"  text-center margin-top [disabled]="!f.valid">
+    <button type="submit" ion-button round block color="primary" text-center margin-top [disabled]="!f.valid">
       הירשם לנסיעה &ensp;
       <ion-icon class="send" name="send"></ion-icon>
     </button>
@@ -38,7 +37,7 @@
 </ion-content>
 <!-- <ion-footer>
     <ion-toolbar > -->
-      <!-- <ion-title text-right>@Designed by murrad with ibrahim.  
+<!-- <ion-title text-right>@Designed by murrad with ibrahim.  
       </ion-title> -->
-    <!-- </ion-toolbar>
+<!-- </ion-toolbar>
   </ion-footer> -->

@@ -54,21 +54,6 @@ export class MyApp {
   }
 
   ngOnInit() {
-
-
-    // let remainng_time = this.service.get_Remainng_Time() //in millisconds
-    // console.log(remainng_time);
-    // this.hours = Math.floor(remainng_time / 3600 / 1000);
-    // remainng_time -= (this.hours * 3600 * 1000);
-    // this.minutes = Math.floor(remainng_time / 60 / 1000);
-    // remainng_time -= (this.minutes * 60 * 1000);
-    // this.seconds = Math.floor(remainng_time / 1000);
-    // console.log(this.hours);
-    // console.log(this.minutes);
-    // console.log(this.seconds);
-
-
-
     this.pages = [
       { title: 'נוסעים', icon: 'images/passengers_logo.png', page: MyClientPage },
       { title: 'Moovit', icon: 'images/moovit_logo1.png' },

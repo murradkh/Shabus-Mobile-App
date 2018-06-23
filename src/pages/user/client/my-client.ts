@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, PopoverController, NavController, MenuController, ViewController } from 'ionic-angular';
+import { IonicPage, PopoverController, NavController} from 'ionic-angular';
 import { Service } from '../../../services/service'
 import { NgForm } from '@angular/forms';
 import { Response } from '@angular/http';
@@ -18,7 +18,8 @@ export class MyClientPage {
 
   @ViewChild('contentEle') contentEle;
   @ViewChild('f') form;
-  private Num_Of_Passengers: number = 1;
+  public Num_Of_Passengers: number = 1;
+  public phoneNumber:string="";
   private driver_name: string = "";
   private interval: any;
   private new_ride_URL: string = "https://shabus-mobile-api.herokuapp.com/user/passenger/new-ride";
@@ -30,10 +31,8 @@ export class MyClientPage {
 
   constructor(private navCtrl: NavController,
     private service: Service,
-    private menuCtrl: MenuController,
     private alert_types_service: Alert_types,
-    private popoverctrl: PopoverController,
-    private viewctrl: ViewController) {
+    private popoverctrl: PopoverController) {
   }
 
   ngOnDestroy() { //when client page will be destroied, it will activate this function
